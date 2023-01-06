@@ -1,0 +1,1 @@
+export const CATEGORIES = ['cats', 'dogs', 'raccoons', 'cars', 'children', 'rock', 'funny', 'hip-hop', 'music', 'games', 'cards', 'magic', 'lol', 'ukraine', 'rusnipi', 'germany', 'god', 'gospodihvatit'];

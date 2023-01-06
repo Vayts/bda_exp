@@ -1,0 +1,85 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('./assets/fonts/icomoon.eot?l9weoo');
+  src:  url('./assets/fonts/icomoon.eot?l9weoo#iefix') format('embedded-opentype'),
+  url('./assets/fonts/icomoon.ttf?l9weoo') format('truetype'),
+  url('./assets/fonts/icomoon.woff?l9weoo') format('woff'),
+  url('./assets/fonts/icomoon.svg?l9weoo#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-user:before {
+  content: "\e900";
+}
+.icon-exit:before {
+  content: "\e901";
+  color: #ec2c32;
+}
+.icon-swap:before {
+  content: "\e902";
+}
+.icon-arrow-down:before {
+  content: "\e903";
+}
+.icon-arrow-up:before {
+  content: "\e904";
+}
+.icon-converter:before {
+  content: "\e905";
+}
+.icon-photo:before {
+  content: "\e906";
+}
+.icon-quiz:before {
+  content: "\e907";
+}
+.icon-question:before {
+  content: "\e908";
+}
+.icon-time:before {
+  content: "\e909";
+}
+.icon-search:before {
+  content: "\e922";
+}
+.icon-close:before {
+  content: "\e933";
+}
+
+
+body {
+  margin: 0;
+  font-family: 'Mulish', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #fff9ff;
+  color: #2E3A59;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Mulish', sans-serif;
+}
+
