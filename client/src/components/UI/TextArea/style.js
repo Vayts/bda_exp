@@ -4,7 +4,7 @@ export const TextAreaWrapper = styled.div`
 	margin: 10px 0 10px 0;
 `;
 
-export const TextAreaInput = styled.textarea.attrs({ maxLength: 170 })`
+export const TextAreaInput = styled.textarea`
   height: ${({ height }) => (height || '40px')};
   font-size: ${({ fontSize }) => (fontSize || '14px')};
   width: ${({ width }) => (width || 'auto')};

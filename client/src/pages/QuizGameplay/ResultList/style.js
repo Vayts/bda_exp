@@ -19,6 +19,7 @@ export const ResultItem = styled.li`
 	color: #fff;
 	margin: 5px;
 	font-size: 20px;
+	user-select: none;
 	
 	&:first-child {
 		margin-left: 0;

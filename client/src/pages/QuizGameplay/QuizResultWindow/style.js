@@ -17,7 +17,7 @@ export const ResultUpWrapper = styled.div`
 			return '#a44b4b';
 		}
 		if (resultValue < 70) {
-			return '#a89e47';
+			return '#e0d053';
 		}
 		return '#4f9b67';
 	}};

@@ -17,6 +17,12 @@ export const validateQuestionItem = (obj) => {
 		valid = false;
 	}
 	
+	if (obj.photo) {
+		if (!obj.photo.editFile.length && !obj.photo.file.length) {
+			valid = false;
+		}
+	}
+	
 	if (obj.question.length < 2) valid = false;
 	if (obj.question.length > 120) valid = false;
 	
@@ -132,11 +138,18 @@ export function generateQuizDTO(mainInfo, questions) {
 		timeToAnswer: Number(mainInfo.timeToAnswer),
 		description: mainInfo.description.trim(),
 		category: mainInfo.category,
-		photo: mainInfo.file[0],
+		withPhoto: mainInfo.withPhoto,
+		photo: mainInfo.fileEdit.length ? mainInfo.fileEdit[0] : mainInfo.file[0],
 		questions: [],
 	};
+	if (mainInfo.withPhoto) {
+		quizDTO.questionsPictures = [];
+	}
 	questions.forEach((item) => {
 		quizDTO.questions = [...quizDTO.questions, generateQuestionsDTO(item)];
+		if (mainInfo.withPhoto) {
+			quizDTO.questionsPictures = [...quizDTO.questionsPictures, generateQuestionPhotoDTO(item)];
+		}
 	});
 	return quizDTO;
 }
@@ -168,6 +181,10 @@ export function generateQuestionsDTO(questionItem) {
 			},
 		],
 	};
+}
+
+export function generateQuestionPhotoDTO(question) {
+	return question.photo.editFile[0] || question.photo.file[0];
 }
 
 export function fullMainInfoValidate(obj) {

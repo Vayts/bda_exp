@@ -25,6 +25,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-edit:before {
+  content: "\e90a";
+}
+
 .icon-user:before {
   content: "\e900";
 }

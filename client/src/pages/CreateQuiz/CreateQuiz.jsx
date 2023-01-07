@@ -57,11 +57,7 @@ export const CreateQuiz = () => {
 			<CreateQuizBlock>
 				<CreateQuizSubTitle>Main Info - Stage 1</CreateQuizSubTitle>
 				<MainInfoForm/>
-				{/*<CreateForm/>*/}
 			</CreateQuizBlock>
-			{/*{mainInfo.saved*/}
-			{/*	? (*/}
-			{/*		<>*/}
 			<CreateQuizBlock>
 				<CreateQuizSubTitle>Questions - Stage 2</CreateQuizSubTitle>
 				<QuestionList/>
@@ -75,9 +71,6 @@ export const CreateQuiz = () => {
 					<Button disabled={getValidationStatus(questions) || !mainInfo.isValid} fz='20px' width='300px' height='40px' text='Create Quiz' margin='0' clickHandler={() => createQuiz()}/>
 				</CreateQuizButtonWrapper>
 			</CreateQuizBlock>
-			{/*	</>*/}
-			{/*)*/}
-			{/*: null}*/}
 		</CreateQuizWrapper>
 	);
 };

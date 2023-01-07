@@ -40,6 +40,7 @@ export const QuizStageCurrent = styled.p`
   font-size: 25px;
   margin: 0 3px 0 0;
   color: #b6b6b6;
+	user-select: none;
 `;
 
 export const QuizStageMax = styled.p`
@@ -48,11 +49,21 @@ export const QuizStageMax = styled.p`
 	font-size: 35px;
 	margin: 0;
 	line-height: 0.9;
+	user-select: none;
 `;
 
 export const GamePlayQuestion = styled.h2`
-	margin: 0 0 40px;
+	margin: 0 0 20px;
 	min-height: 80px;
+`;
+
+export const GamePlayImg = styled.img`
+  width: 560px;
+  height: 350px;
+	display: block;
+	margin: 0 auto 30px;
+	border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 `;
 
 export const GameplayMainWindow = styled.div`

@@ -8,6 +8,7 @@ import { useOutsideClick } from '@src/hooks/useOutsideClick';
 import { AuthModal } from '@src/components/Modal/AuthModal/AuthModal';
 import { ExitModal } from '@src/components/Modal/ExitModal/ExitModal';
 import { QuizCategoriesModal } from '@src/components/Modal/QuizCategoriesModal/QuizCategoriesModal';
+import { EditPhotoModal } from '@src/components/Modal/EditPhotoModal/EditPhotoModal';
 import { ModalBackground, ModalWindow, CloseModal } from './style';
 
 export const Modal = () => {
@@ -38,6 +39,7 @@ export const Modal = () => {
 				{modal === 'auth' && <AuthModal/>}
 				{modal === 'exit' && <ExitModal/>}
 				{modal === 'quizCategories' && <QuizCategoriesModal/>}
+				{modal === 'editPhoto' && <EditPhotoModal/>}
 			</ModalWindow>
 		);
 	};

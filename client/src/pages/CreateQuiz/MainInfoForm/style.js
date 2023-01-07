@@ -11,5 +11,10 @@ export const FormUpperContent = styled.div`
 `;
 
 export const FormMainInfo = styled.div`
-	width: 45%;
+	flex-grow: 1;
+`;
+
+export const FormBottomContent = styled.div`
+  display: flex;
+	justify-content: flex-end;
 `;
