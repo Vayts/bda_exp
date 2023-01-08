@@ -13,8 +13,10 @@ const initialState = {
 		category: null,
 		timeToAnswer: '',
 		file: [],
+		fileEdit: [],
 		isValid: false,
 		isTouched: false,
+		withPhoto: false,
 		errors: {},
 		touched: {},
 		saved: false,
@@ -37,6 +39,7 @@ const initialState = {
 		],
 		activeQuestion: 0,
 	},
+	questionPhotos: [],
 };
 
 export const createQuizReducer = (state = initialState, action) => {

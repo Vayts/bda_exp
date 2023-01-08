@@ -1,11 +1,16 @@
 import styled from 'styled-components';
 
 export const PageMenuWrapper = styled.ul`
-	padding: 0 40px;
+	padding: 0;
   display: flex;
 	flex-wrap: wrap;
 	list-style: none;
 	margin: 0 0 20px;
+	
+	@media (max-width: 768px) {
+		width: 100%;
+		justify-content: center;
+	}
 `;
 
 export const PageMenuItem = styled.li`

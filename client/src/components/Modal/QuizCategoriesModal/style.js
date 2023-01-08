@@ -13,6 +13,10 @@ export const QuizCategoryModalWrapper = styled.div`
       flex-basis: calc(30%);
 			margin: 5px 0 !important;
       box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+
+      @media (max-width: 768px) {
+        flex-basis: calc(50% - 10px);
+      }
     }
   }
 `;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import {
-	GameplayBottomContent,
+	GameplayBottomContent, GamePlayImg,
 	GameplayMainWindow,
 	GameplayProcessWrapper, GamePlayQuestion,
 	GameplayTimer,
@@ -15,6 +15,7 @@ import { Button } from '@src/components/UI/Button/Button';
 import { QuizResultWindow } from '@src/pages/QuizGameplay/QuizResultWindow/QuizResultWindow';
 import { setResult } from '@store/quiz/actions';
 import { useDispatch } from 'react-redux';
+import { BASE_URL } from '@constants/base';
 
 export const GameplayProcess = ({ quizItem }) => {
 	const [quiz, setQuiz] = useState(quizItem);
@@ -89,6 +90,7 @@ export const GameplayProcess = ({ quizItem }) => {
 							/>
 						</GameplayTimer>
 						<GameplayMainWindow>
+							{quizItem.withPhoto ? <GamePlayImg src={`${BASE_URL}/photo/download/${quiz.questions[stage - 1].photo}`} alt='Quiz Img'/> : null}
 							<GamePlayQuestion>{`${stage}. ${quiz.questions[stage - 1].question}`}</GamePlayQuestion>
 							<AnswerList
 								answers={quiz.questions[stage - 1].answers}
@@ -127,5 +129,6 @@ GameplayProcess.propTypes = {
 		questions: PropTypes.array,
 		userAnswers: PropTypes.array,
 		timeToAnswer: PropTypes.number,
+		withPhoto: PropTypes.bool,
 	}),
 };

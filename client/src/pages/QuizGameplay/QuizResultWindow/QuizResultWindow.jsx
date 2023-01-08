@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import {
-	ResultBottomWrapper, ResultButtons, ResultQuizText, ResultSubTitle,
+	ResultButtons, ResultQuizText, ResultSubTitle,
 	ResultTitle,
-	ResultUpWrapper,
-	ResultValue,
 	ResultWrapper,
 } from '@src/pages/QuizGameplay/QuizResultWindow/style';
 import { getResultsFetch, setCurrent, setResult } from '@store/quiz/actions';
@@ -53,22 +51,17 @@ export const QuizResultWindow = ({ quiz, reset }) => {
 		result
 			? (
 				<ResultWrapper>
-					<ResultUpWrapper resultValue={getResult().percent}>
-						<ResultTitle>Results</ResultTitle>
-						<ResultValue>{`${getResult().counter} correct answer(-s)`}</ResultValue>
-					</ResultUpWrapper>
-					<ResultBottomWrapper>
-						<ResultSubTitle>Answers</ResultSubTitle>
-						<ResultList userAnswers={result}/>
-						<ResultSubTitle>Percentage</ResultSubTitle>
-						<ResultQuizText>{`You scored ${getResult().percent}% on a quiz.`}</ResultQuizText>
-						<ResultSubTitle>Counter</ResultSubTitle>
-						<ResultQuizText>{`You answered ${getResult().counter} questions correctly out of ${quiz.questions.length}.`}</ResultQuizText>
-						<ResultButtons>
-							<Button text='Reset' clickHandler={() => reset()} width='120px' height='40px'/>
-							<Button text='To List' clickHandler={() => backToList()} width='120px' height='40px'/>
-						</ResultButtons>
-					</ResultBottomWrapper>
+					<ResultTitle>Results</ResultTitle>
+					<ResultSubTitle>Answers</ResultSubTitle>
+					<ResultList userAnswers={result}/>
+					<ResultSubTitle>Percentage</ResultSubTitle>
+					<ResultQuizText>{`You scored ${getResult().percent}% on a quiz.`}</ResultQuizText>
+					<ResultSubTitle>Counter</ResultSubTitle>
+					<ResultQuizText>{`You answered ${getResult().counter} questions correctly out of ${quiz.questions.length}.`}</ResultQuizText>
+					<ResultButtons>
+						<Button text='Reset' clickHandler={() => reset()} width='120px' height='40px'/>
+						<Button text='To List' clickHandler={() => backToList()} width='120px' height='40px'/>
+					</ResultButtons>
 				</ResultWrapper>
 			) : <Loader size={80}/>
 	);

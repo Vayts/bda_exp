@@ -25,8 +25,8 @@ export const PreQuizModal = () => {
 	
 	return (
 		<PreQuizWrapper>
-			<PreQuizImg src={`${BASE_URL}/photo/download/${quiz.photo}`}/>
 			<PreQuizTitle>{quiz.title}</PreQuizTitle>
+			<PreQuizImg src={`${BASE_URL}/photo/download/${quiz.photo}`}/>
 			<PreQuizDescription>{quiz.description}</PreQuizDescription>
 			<PreQuizInfoList>
 				<PreQuizInfoItem className='icon-time'>

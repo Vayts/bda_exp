@@ -1,4 +1,6 @@
 export const SET_MODAL_STATE = 'SET_MODAL_STATE';
 export const REMOVE_MODAL = 'REMOVE_MODAL';
-
 export const SET_AUTH = 'SET_AUTH';
+export const SET_CURRENT_PHOTO_EDIT = 'SET_CURRENT_PHOTO_EDIT';
+
+export const SET_PHOTO_SCALE = 'SET_PHOTO_SCALE';

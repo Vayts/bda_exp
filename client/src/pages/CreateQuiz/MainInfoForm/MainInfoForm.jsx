@@ -5,17 +5,20 @@ import { Select } from '@src/components/UI/Select/Select';
 import { QUIZ_CATEGORY } from '@constants/quizCategory';
 import { TextArea } from '@src/components/UI/TextArea/TextArea';
 import { useDispatch, useSelector } from 'react-redux';
-import { getQuizMainInfo } from '@store/createQuiz/selectors';
+import { getQuestionsForm, getQuizMainInfo } from '@store/createQuiz/selectors';
 import { NotFormikErrorMessage } from '@src/components/NotFormikErrorMessage/NotFormikErrorMessage';
-import { editMainInfoForm, setMainInfo } from '@store/createQuiz/actions';
+import { deletePhotoFromAllQuestions, editMainInfoForm, setMainInfo, setPhotoForAllQuestions } from '@store/createQuiz/actions';
 import { fileTypeValidation } from '@helpers/photo.helper';
 import { getNotification } from '@src/notifications/notification';
 import { DEFAULT_MAIN_INFO } from '@constants/quiz';
-import { FormMainInfo, FormUpperContent, FormWrapper } from './style';
+import { setCurrentPhotoEdit, setModalState } from '@store/base/actions';
+import { Checkbox } from '@src/components/UI/Checkbox/Checkbox';
+import { FormBottomContent, FormMainInfo, FormUpperContent, FormWrapper } from './style';
 
 export const MainInfoForm = () => {
 	const dispatch = useDispatch();
 	const values = useSelector(getQuizMainInfo);
+	const questions = useSelector(getQuestionsForm);
 	
 	useEffect(() => {
 		return () => {
@@ -25,6 +28,7 @@ export const MainInfoForm = () => {
 	
 	const onFileChange = useCallback(() => {
 		return (e) => {
+			dispatch(editMainInfoForm(values, 'fileEdit', []));
 			if (fileTypeValidation(e.target.files[0])) {
 				dispatch(editMainInfoForm(values, 'file', [e.target.files[0]]));
 			} else {
@@ -39,8 +43,27 @@ export const MainInfoForm = () => {
 		};
 	}, [values]);
 	
+	const onEditSave = (result) => {
+		dispatch(editMainInfoForm(values, 'fileEdit', [result]));
+	};
+	
+	const onFileEdit = () => {
+		dispatch(setModalState('editPhoto'));
+		dispatch(setCurrentPhotoEdit(URL.createObjectURL(values.file[0]), onEditSave, values.file[0], 410, 280));
+	};
+	
 	const setCategory = (value) => {
 		dispatch(editMainInfoForm(values, 'category', value));
+	};
+	
+	const setWithPhotos = () => {
+		const newWithPhotoValue = !values.withPhoto;
+		if (!newWithPhotoValue) {
+			dispatch(deletePhotoFromAllQuestions(questions));
+		} else {
+			dispatch(setPhotoForAllQuestions(questions));
+		}
+		dispatch(editMainInfoForm(values, 'withPhoto', !values.withPhoto));
 	};
 	
 	return (
@@ -48,12 +71,13 @@ export const MainInfoForm = () => {
 			<FormWrapper>
 				<FormUpperContent>
 					<FileHandler
-						value={values.file}
+						value={values.fileEdit.length ? values.fileEdit : values.file}
 						onChange={onFileChange()}
 						multiple={false}
-						width='50%'
-						height='350px'
-						disabled={values.saved}
+						width='410px'
+						height='280px'
+						editable
+						editFunc={onFileEdit}
 					/>
 					<NotFormikErrorMessage
 						shown={values.errors.file && values.touched.file}
@@ -68,7 +92,6 @@ export const MainInfoForm = () => {
 							height="30px"
 							name="title"
 							margin='20px 0 10px 0'
-							disabled={values.saved}
 						/>
 						<NotFormikErrorMessage
 							shown={values.errors.title && values.touched.title}
@@ -84,7 +107,6 @@ export const MainInfoForm = () => {
 							height='30px'
 							margin='10px 0 10px 0'
 							placeholder='Time to answer in seconds'
-							disabled={values.saved}
 						/>
 						<NotFormikErrorMessage
 							shown={values.errors.timeToAnswer && values.touched.timeToAnswer}
@@ -97,7 +119,6 @@ export const MainInfoForm = () => {
 							name='category'
 							selectValue={values.category?.value ? values.category.value : null}
 							margin='10px 0 10px 0'
-							disabled={values.saved}
 						/>
 						<NotFormikErrorMessage
 							shown={values.errors.category && values.touched.category}
@@ -109,9 +130,9 @@ export const MainInfoForm = () => {
 							onChange={handleChange('description')}
 							id='description'
 							width='100%'
-							height='90px'
+							height='70px'
 							placeholder='Description'
-							disabled={values.saved}
+							max={10}
 						/>
 						<NotFormikErrorMessage
 							shown={values.errors.description && values.touched.description}
@@ -119,10 +140,9 @@ export const MainInfoForm = () => {
 						/>
 					</FormMainInfo>
 				</FormUpperContent>
-				{/*<FormBottomContent>*/}
-				{/*	<Button primary clickHandler={() => onSubmit()} disabled={!(values.isValid && values.isTouched) || values.saved} width="150px" type="button" height='40px' text="Save" padding='5px 0' fz='16px'/>*/}
-				{/*	{values.saved ? <Button primary clickHandler={() => startEdit()} text='Edit' width="150px" type="button" height='40px' padding='5px 0' fz='16px'/> : null}*/}
-				{/*</FormBottomContent>*/}
+				<FormBottomContent>
+					<Checkbox id='bf3w3da' text='Questions with pictures' name='withPhoto' onChange={() => setWithPhotos()}/>
+				</FormBottomContent>
 			</FormWrapper>
 		</>
 	);

@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	getActiveQuestion,
-	getQuestionsForm,
+	getQuestionsForm, getQuizMainInfo,
 } from '@store/createQuiz/selectors';
 import { QuestionAddButton, QuestionItem, QuestionListWrapper } from '@src/pages/CreateQuiz/QuestionList/style';
 import { addQuestionForm, setActiveQuestion } from '@store/createQuiz/actions';
@@ -10,6 +10,7 @@ import { addQuestionForm, setActiveQuestion } from '@store/createQuiz/actions';
 export const QuestionList = () => {
 	const questions = useSelector(getQuestionsForm);
 	const activeQuestion = useSelector(getActiveQuestion);
+	const mainInfo = useSelector(getQuizMainInfo);
 	const dispatch = useDispatch();
 	
 	const changeActiveQuestion = (index) => {
@@ -22,7 +23,7 @@ export const QuestionList = () => {
 	
 	const addQuestion = () => {
 		if (questions.length < 9) {
-			dispatch(addQuestionForm(questions));
+			dispatch(addQuestionForm(questions, mainInfo.withPhoto));
 		}
 	};
 	

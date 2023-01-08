@@ -6,6 +6,7 @@ export const DropdownWrapper = styled.div`
   position: relative;
 	background-color: ${({ disabled }) => (disabled ? '#e0e0e0' : '#fff')};
 	margin: ${({ margin }) => (margin || 0)};
+	box-sizing: border-box;
 
   img {
     width: 16px;
@@ -15,6 +16,7 @@ export const DropdownWrapper = styled.div`
 
 export const DropdownButton = styled.div`
   user-select: none;
+	width: 100%;
 	cursor: pointer;
   background-color: transparent;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);

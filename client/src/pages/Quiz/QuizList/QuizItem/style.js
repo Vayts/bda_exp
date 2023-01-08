@@ -9,6 +9,7 @@ export const QuizListItem = styled.li`
   overflow: hidden;
   background-color: #fff;
   margin: 0 0 30px;
+  position: relative;
 
   @media (min-width: 768px ) and (max-width: 1199px) {
     flex-basis: calc(50% - 20px);
@@ -49,6 +50,24 @@ export const QuizItemImg = styled.img`
 	vertical-align: top;
 `;
 
+export const QuizWithPhotoIcon = styled.div`
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #fff;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+
+  &:before {
+    font-size: 20px;
+  }
+`;
+
 export const QuizBottomContent = styled.div`
   -webkit-box-shadow: 3px -31px 23px 14px rgba(0,0,0,0.28);
   box-shadow: 3px -31px 23px 14px rgba(0,0,0,0.28);
@@ -75,18 +94,22 @@ export const QuizItemTitle = styled.h4`
 	font-size: 20px;
 	font-weight: 300;
   cursor: default;
+	height: 50px;
 `;
 
 export const QuizItemDescription = styled.p`
 	cursor: default;
 	color: #7c7b7b;
 	min-height: 80px;
+  overflow-wrap: break-word;
 `;
 
 export const QuizSubContent = styled.div`
   display: flex;
 	justify-content: space-between;
 	align-items: center;
+	bottom: 10px;
+	flex-grow: 1;
 `;
 
 export const QuizItemInfoList = styled.ul`

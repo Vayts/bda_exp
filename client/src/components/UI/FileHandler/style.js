@@ -1,9 +1,16 @@
 import styled, { css } from 'styled-components';
+import { COLORS } from '@constants/colors';
 
-export const FileHandlerWrapper = styled.label`
-  margin: 20px 0 20px;
+export const FileHandlerHolder = styled.div`
+  position: relative;
   width: ${({ width }) => (width || '450px')};
   height: ${({ height }) => (height || '300px')};
+  margin: 20px 0 20px;
+`;
+
+export const FileHandlerWrapper = styled.label`
+  width: 100%;
+  height: 100%;
   border: 1px dashed transparent;
   display: block;
   background-color: ${({ disabled }) => (disabled ? '#eeeeee' : '#fff')};
@@ -46,7 +53,6 @@ export const FileHandlerImageWrapper = styled.div`
   height: 100%;
   position: relative;
   border-radius: 10px;
-  overflow: hidden;
   transition: all 0.4s;
   background-color: rgba(0, 0, 0, 0.65);
 	
@@ -78,7 +84,6 @@ export const FileHandlerImageWrapper = styled.div`
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      //display: none;
 			opacity: 0;
       z-index: 100;
       color: #fff;
@@ -86,12 +91,44 @@ export const FileHandlerImageWrapper = styled.div`
 			transition: all 0.23s;
     }
 `;
+
+export const FileEdit = styled.div`
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  z-index: 10;
+  border-radius: 50%;
+  background-color: #fff;
+	cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+	transition: all 0.5s;
+	
+	&:hover {
+		background-color: ${COLORS.light.primary};
+		
+		&:before {
+			color: #fff;
+		}
+	}
+
+  &:before {
+    font-size: 25px;
+    color: ${COLORS.light.primary};
+  }
+`;
+
 export const FileHandlerImage = styled.img`
   width: 100%;
   height: 100%;
   position: relative;
   transition: all 0.4s;
   object-fit: cover;
+  border-radius: 10px;
 `;
 export const FileHandlerDesign = styled.div`
   display: flex;

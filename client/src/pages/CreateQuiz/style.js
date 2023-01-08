@@ -12,8 +12,12 @@ const appear = keyframes`
 `;
 
 export const CreateQuizWrapper = styled.div`
-	width: 1200px;
+	width: 1100px;
 	margin: 20px auto 0;
+	
+	@media (max-width: 1250px) {
+		width: 700px;
+	}
 `;
 
 export const CreateQuizTitle = styled.h2`

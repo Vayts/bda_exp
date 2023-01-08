@@ -7,6 +7,10 @@ export const ResultListWrapper = styled.ul`
 	flex-wrap: wrap;
 	margin: 0 0 10px;
 	padding: 0;
+	
+	@media (max-width: 768px) {
+    justify-content: center;
+	}
 `;
 
 export const ResultItem = styled.li`
@@ -19,6 +23,7 @@ export const ResultItem = styled.li`
 	color: #fff;
 	margin: 5px;
 	font-size: 20px;
+	user-select: none;
 	
 	&:first-child {
 		margin-left: 0;

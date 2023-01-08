@@ -14,6 +14,7 @@ export const TextArea = ({
 	error,
 	validation,
 	disabled,
+	max,
 }) => {
 	return (
 		<TextAreaWrapper>
@@ -28,8 +29,8 @@ export const TextArea = ({
 				name={name}
 				error={error}
 				validation={validation}
-				maxlength="4"
 				disabled={disabled}
+				maxlength={max || 255}
 			/>
 		</TextAreaWrapper>
 	);
@@ -47,4 +48,5 @@ TextArea.propTypes = {
 	error: PropTypes.object,
 	validation: PropTypes.string,
 	disabled: PropTypes.bool,
+	max: PropTypes.number,
 };

@@ -1,5 +1,4 @@
 import {
-	ADD_QUESTION_FORM,
 	SET_ACTIVE_QUESTION,
 	SET_MAIN_INFO,
 	SET_QUESTIONS,
@@ -9,11 +8,11 @@ import { fullMainInfoValidate, fullQuestionValidate, validateQuestionItem } from
 import { getNotification } from '@src/notifications/notification';
 import { setQuizTrends } from '@store/quiz/actions';
 
-export const addQuestionForm = () => {
-	return {
-		type: ADD_QUESTION_FORM,
-		payload: {
-			id: uuid(),
+export const addQuestionForm = (questions, isPhoto) => {
+	return (dispatch) => {
+		const id = uuid();
+		const newQuestionForm = {
+			id,
 			question: '',
 			correct: '',
 			valid: false,
@@ -24,7 +23,17 @@ export const addQuestionForm = () => {
 			answer4: '',
 			errors: {},
 			touchedObj: {},
-		},
+		};
+		
+		if (isPhoto) {
+			newQuestionForm.photo = {
+				questionId: id,
+				file: [],
+				editFile: [],
+			};
+		}
+		
+		dispatch(setQuestions([...questions, newQuestionForm]));
 	};
 };
 
@@ -81,7 +90,7 @@ export const editQuestionCorrect = (id, questions, correctValue) => {
 					isTouched: true,
 					touchedObj: {
 						...item.touchedObj,
-						correct: correctValue,
+						correct: true,
 					},
 					errors: fullQuestionValidate(
 						{
@@ -112,7 +121,7 @@ export const deleteQuestion = (questionIndex, questions) => {
 			return null;
 		});
 		
-		dispatch(setQuestions(newState, {}, {}));
+		dispatch(setQuestions(newState));
 		if (questions[questionIndex - 1]) {
 			dispatch(setActiveQuestion(questionIndex - 1));
 		} else {
@@ -121,10 +130,84 @@ export const deleteQuestion = (questionIndex, questions) => {
 	};
 };
 
+export const deletePhotoFromAllQuestions = (questions) => {
+	return (dispatch) => {
+		const newState = questions.map((item) => {
+			delete item.photo;
+			return {
+				...item,
+				valid: validateQuestionItem({
+					...item,
+				}),
+			};
+		});
+		dispatch(setQuestions(newState));
+	};
+};
+
+export const setPhotoForAllQuestions = (questions) => {
+	return (dispatch) => {
+		const newState = questions.map((item) => {
+			return {
+				...item,
+				photo: {
+					questionId: item.id,
+					file: [],
+					editFile: [],
+				},
+				valid: validateQuestionItem({
+					...item,
+					photo: {
+						questionId: item.id,
+						file: [],
+						editFile: [],
+					},
+				}),
+			};
+		});
+		dispatch(setQuestions(newState, {}, {}));
+	};
+};
+
+export const setPhotoForQuestion = (id, questions, value, name) => {
+	return (dispatch) => {
+		const newState = questions.map((item) => {
+			if (item.id === id) {
+				return {
+					...item,
+					isTouched: true,
+					touchedObj: {
+						...item.touchedObj,
+						[name]: true,
+					},
+					errors: fullQuestionValidate({ ...item }),
+					valid: validateQuestionItem({
+						...item,
+						isTouched: true,
+						photo: {
+							...item.photo,
+							editFile: name === 'file' ? [] : item.photo.editFile,
+							[name]: value,
+						},
+					}),
+					photo: {
+						...item.photo,
+						editFile: name === 'file' ? [] : item.photo.editFile,
+						[name]: value,
+					},
+				};
+			}
+			return item;
+		});
+		dispatch(setQuestions(newState));
+	};
+};
+
 export const editMainInfoForm = (mainInfo, name, data) => {
 	return (dispatch) => {
 		const newState = {
 			...mainInfo,
+			fileEdit: name === 'file' ? [] : mainInfo.fileEdit,
 			[name]: data,
 			isTouched: true,
 			touched: {
@@ -153,12 +236,13 @@ export const setMainInfo = (values) => {
 	};
 };
 
-export const createQuizFetch = (values, questions, navigate, axiosPrivate) => {
+export const createQuizFetch = (values, questions, navigate, axiosPrivate, setLoading) => {
 	return async (dispatch) => {
+		setLoading(true);
 		const formData = new FormData();
 		const keys = Object.keys(values);
 		keys.forEach((el) => {
-			if (el !== 'photo' && el !== 'questions' && el !== 'category') {
+			if (el !== 'photo' && el !== 'questions' && el !== 'category' && el !== 'questionsPictures') {
 				formData.set(el, values[el]);
 			}
 			if (el === 'category') {
@@ -169,6 +253,13 @@ export const createQuizFetch = (values, questions, navigate, axiosPrivate) => {
 			}
 			if (el === 'photo') {
 				formData.append('file', values.photo);
+			}
+			if (el === 'questionsPictures') {
+				// eslint-disable-next-line no-console
+				console.log(values[el]);
+				values[el].forEach((item) => {
+					formData.append('pictures', item);
+				});
 			}
 		});
 		try {
@@ -188,6 +279,8 @@ export const createQuizFetch = (values, questions, navigate, axiosPrivate) => {
 			navigate('/quiz');
 		} catch (e) {
 			getNotification('Something went wrong!', 'error');
+		} finally {
+			setLoading(false);
 		}
 	};
 };

@@ -1,4 +1,4 @@
-import { REMOVE_MODAL, SET_AUTH, SET_MODAL_STATE } from '@store/base/actionTypes';
+import { REMOVE_MODAL, SET_AUTH, SET_CURRENT_PHOTO_EDIT, SET_MODAL_STATE, SET_PHOTO_SCALE } from '@store/base/actionTypes';
 import { getNotification } from '@src/notifications/notification';
 import axios from '@src/api/axios';
 
@@ -106,5 +106,25 @@ export function setAuth(user) {
 	return {
 		type: SET_AUTH,
 		payload: user,
+	};
+}
+
+export function setCurrentPhotoEdit(file, func, photo, width, height) {
+	return {
+		type: SET_CURRENT_PHOTO_EDIT,
+		payload: {
+			photo: file,
+			func,
+			currentPhoto: photo,
+			width,
+			height,
+		},
+	};
+}
+
+export function setScale(value) {
+	return {
+		type: SET_PHOTO_SCALE,
+		payload: value,
 	};
 }

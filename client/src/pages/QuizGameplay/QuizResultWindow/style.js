@@ -6,28 +6,24 @@ export const ResultWrapper = styled.div`
 	border-radius: 15px;
 	overflow: hidden;
 	min-width: 660px;
+  display: flex;
+	flex-direction: column;
 	background-color: #fff;
-`;
+	padding: 20px;
 
-export const ResultUpWrapper = styled.div`
-  padding: 20px 20px 50px;
-	text-align: center;
-  background-color: ${({ resultValue }) => {
-		if (resultValue < 40) {
-			return '#a44b4b';
-		}
-		if (resultValue < 70) {
-			return '#a89e47';
-		}
-		return '#4f9b67';
-	}};
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 100vh;
+		border-radius: 0;
+		min-width: auto;
+  }
 `;
 
 export const ResultTitle = styled.h3`
 	margin: 0 0 20px;
 	font-size: 22px;
 	font-weight: 600;
-	color: #fff;
+	text-align: center;
 `;
 
 export const ResultValue = styled.h2`
@@ -48,12 +44,16 @@ export const ResultBottomWrapper = styled.div`
 	flex-direction: column;
   justify-content: center;
 	align-items: flex-start;
+
+  @media (max-width: 768px) {
+    flex-grow: 1;
+  }
 `;
 
 export const ResultSubTitle = styled.h4`
 	margin: 10px 0;
 	font-size: 22px;
-	color: ${COLORS.light.primary};
+	//color: ${COLORS.light.primary};
 `;
 
 export const ResultQuizText = styled.p`

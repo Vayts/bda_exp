@@ -7,7 +7,9 @@ export const AnswerButtonWrapper = styled.div`
 	box-shadow: ${({ isActive }) => (isActive ? '0 0 10px rgba(0, 0, 0, 0.4)' : '0 0 10px rgba(0, 0, 0, 0.2)')};
 	color: ${({ isActive }) => (isActive ? '#fff' : '#000')};
   margin-bottom: 25px;
-  height: 60px;
+  height: auto;
+	padding: 0 10px;
+	min-height: 80px;
   display: flex;
   justify-content: center;
 	align-items: center;
