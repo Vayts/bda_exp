@@ -23,19 +23,19 @@ export const validateQuestionItem = (obj) => {
 		}
 	}
 	
-	if (obj.question.length < 2) valid = false;
+	if (obj.question.trim().length < 2) valid = false;
 	if (obj.question.length > 120) valid = false;
 	
-	if (obj.answer1.length < 1) valid = false;
+	if (obj.answer1.trim().length < 1) valid = false;
 	if (obj.answer1.length > 70) valid = false;
 
-	if (obj.answer2.length < 1) valid = false;
+	if (obj.answer2.trim().length < 1) valid = false;
 	if (obj.answer2.length > 70) valid = false;
 
-	if (obj.answer3.length < 1) valid = false;
+	if (obj.answer3.trim().length < 1) valid = false;
 	if (obj.answer3.length > 70) valid = false;
 
-	if (obj.answer4.length < 1) valid = false;
+	if (obj.answer4.trim().length < 1) valid = false;
 	if (obj.answer4.length > 70) valid = false;
 
 	return valid;
@@ -71,11 +71,11 @@ export const validateQuestionTitle = (title) => {
 		errors.question = 'Please enter valid question';
 		return errors;
 	}
-	if (title.length < 2) {
+	if (title.trim().length < 2) {
 		errors.question = 'Must be at least 2 characters';
 		return errors;
 	}
-	if (title.length > 120) {
+	if (title.trim().length > 120) {
 		errors.question = 'Must be less than 120 characters';
 		return errors;
 	}
@@ -95,7 +95,7 @@ export const validateQuestionAnswer = (answer, number) => {
 		errors[`answer${number}`] = 'Please enter valid answer';
 		return errors;
 	}
-	if (answer.length < 1) {
+	if (answer.trim().length < 1) {
 		errors[`answer${number}`] = 'Must be at least 1 characters';
 		return errors;
 	}
@@ -133,10 +133,10 @@ export function getValidationStatus(arr) {
 
 export function generateQuizDTO(mainInfo, questions) {
 	const quizDTO = {
-		title: mainInfo.title.trim(),
+		title: mainInfo.title.replace(/ +/g, ' ').trim(),
 		userAnswers: [],
 		timeToAnswer: Number(mainInfo.timeToAnswer),
-		description: mainInfo.description.trim(),
+		description: mainInfo.description.replace(/ +/g, ' ').trim(),
 		category: mainInfo.category,
 		withPhoto: mainInfo.withPhoto,
 		photo: mainInfo.fileEdit.length ? mainInfo.fileEdit[0] : mainInfo.file[0],
@@ -157,26 +157,26 @@ export function generateQuizDTO(mainInfo, questions) {
 export function generateQuestionsDTO(questionItem) {
 	return {
 		id: uuidv4(),
-		question: questionItem.question,
+		question: questionItem.question.replace(/ +/g, ' ').trim(),
 		answers: [
 			{
 				id: uuidv4(),
-				text: questionItem.answer1.trim(),
+				text: questionItem.answer1.replace(/ +/g, ' ').trim(),
 				correct: questionItem.correct.value === 1,
 			},
 			{
 				id: uuidv4(),
-				text: questionItem.answer2.trim(),
+				text: questionItem.answer2.replace(/ +/g, ' ').trim(),
 				correct: questionItem.correct.value === 2,
 			},
 			{
 				id: uuidv4(),
-				text: questionItem.answer3.trim(),
+				text: questionItem.answer3.replace(/ +/g, ' ').trim(),
 				correct: questionItem.correct.value === 3,
 			},
 			{
 				id: uuidv4(),
-				text: questionItem.answer4.trim(),
+				text: questionItem.answer4.replace(/ +/g, ' ').trim(),
 				correct: questionItem.correct.value === 4,
 			},
 		],
@@ -214,12 +214,12 @@ function validateMainInfoTitle(title) {
 		errors.title = 'Please enter valid Quiz title';
 		return errors;
 	}
-	if (title.length < 5) {
+	if (title.trim().length < 5) {
 		errors.title = 'Must be at least 5 characters';
 		return errors;
 	}
-	if (title.length > 40) {
-		errors.title = 'Must be less than 50 characters';
+	if (title.trim().length > 40) {
+		errors.title = 'Must be less than 40 characters';
 		return errors;
 	}
 	return errors;
@@ -264,15 +264,15 @@ function validateCategory(category) {
 
 function validateDescription(description) {
 	const errors = {};
-	if (description === '') {
+	if (description.trim() === '') {
 		errors.description = 'Required field';
 		return errors;
 	}
-	if (description.length < 20) {
+	if (description.replace(/ +/g, ' ').trim().length < 20) {
 		errors.description = 'Must be at least 20 characters';
 		return errors;
 	}
-	if (description.length > 255) {
+	if (description.trim().length > 255) {
 		errors.description = 'Must be less than 255 characters';
 		return errors;
 	}

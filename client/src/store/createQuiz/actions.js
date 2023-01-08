@@ -236,8 +236,9 @@ export const setMainInfo = (values) => {
 	};
 };
 
-export const createQuizFetch = (values, questions, navigate, axiosPrivate) => {
+export const createQuizFetch = (values, questions, navigate, axiosPrivate, setLoading) => {
 	return async (dispatch) => {
+		setLoading(true);
 		const formData = new FormData();
 		const keys = Object.keys(values);
 		keys.forEach((el) => {
@@ -278,6 +279,8 @@ export const createQuizFetch = (values, questions, navigate, axiosPrivate) => {
 			navigate('/quiz');
 		} catch (e) {
 			getNotification('Something went wrong!', 'error');
+		} finally {
+			setLoading(false);
 		}
 	};
 };

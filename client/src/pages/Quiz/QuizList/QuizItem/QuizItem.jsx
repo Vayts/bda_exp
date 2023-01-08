@@ -11,7 +11,7 @@ import {
 	QuizItemImg, QuizItemInfoItem,
 	QuizItemInfoList, QuizItemInfoText,
 	QuizItemTitle,
-	QuizListItem, QuizSubContent,
+	QuizListItem, QuizSubContent, QuizWithPhotoIcon,
 } from './style';
 
 export const QuizItem = ({ quiz }) => {
@@ -26,7 +26,8 @@ export const QuizItem = ({ quiz }) => {
 	
 	return (
 		<QuizListItem key={quiz._id}>
-			<QuizItemImg src={`${BASE_URL}/photo/download/${quiz.photo}`}/>
+			{quiz.withPhoto ? <QuizWithPhotoIcon className='icon-photo'/> : null}
+			<QuizItemImg src={`${BASE_URL}/photo/download/${quiz.photo}`} alt={`${quiz.title} image`}/>
 			<QuizBottomContent>
 				<QuizCategory>{`#${quiz.category}`}</QuizCategory>
 				<QuizItemTitle>{quiz.title}</QuizItemTitle>
@@ -60,5 +61,6 @@ QuizItem.propTypes = {
 		questionsLength: PropTypes.number,
 		timeToAnswer: PropTypes.number,
 		category: PropTypes.string,
+		withPhoto: PropTypes.bool,
 	}),
 };

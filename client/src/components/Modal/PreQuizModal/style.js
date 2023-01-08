@@ -1,8 +1,14 @@
 import styled from 'styled-components';
 
 export const PreQuizWrapper = styled.div`
-	padding: 20px;
-	max-width: 450px;
+	padding: 0;
+	//max-width: 450px;
+
+  @media (max-width: 768px) {
+		max-width: 100%;
+    width: 100%;
+    height: auto;
+  }
 `;
 
 export const PreQuizImg = styled.img`
@@ -13,6 +19,11 @@ export const PreQuizImg = styled.img`
   object-fit: cover;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 	margin-bottom: 15px;
+	
+	@media (max-width: 768px) {
+		width: 100%;
+		height: auto;
+	}
 `;
 
 export const PreQuizDescription = styled.p`
@@ -21,12 +32,21 @@ export const PreQuizDescription = styled.p`
 	text-align: center;
 	width: 420px;
 	margin-bottom: 15px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const PreQuizTitle = styled.h3`
 	font-size: 25px;
 	margin: 10px 0;
+	width: 420px;
 	text-align: center;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const PreQuizButtons = styled.div`

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { QuestionForm } from '@src/pages/CreateQuiz/QuestionForm/QuestionForm';
 import { Button } from '@src/components/UI/Button/Button';
 import { QuestionList } from '@src/pages/CreateQuiz/QuestionList/QuestionList';
@@ -28,6 +28,7 @@ export const CreateQuiz = () => {
 	const user = useSelector(getUser);
 	const navigate = useNavigate();
 	const axiosPrivate = useAxiosPrivate();
+	const [isLoading, setLoading] = useState(false);
 	
 	useEffect(() => {
 		if (!user) {
@@ -46,7 +47,7 @@ export const CreateQuiz = () => {
 	};
 	
 	const createQuiz = () => {
-		dispatch(createQuizFetch(generateQuizDTO(mainInfo, questions), questions, navigate, axiosPrivate));
+		dispatch(createQuizFetch(generateQuizDTO(mainInfo, questions), questions, navigate, axiosPrivate, setLoading));
 	};
 	
 	return (
@@ -68,11 +69,9 @@ export const CreateQuiz = () => {
 			</CreateQuizBlock>
 			<CreateQuizBlock>
 				<CreateQuizButtonWrapper>
-					<Button disabled={getValidationStatus(questions) || !mainInfo.isValid} fz='20px' width='300px' height='40px' text='Create Quiz' margin='0' clickHandler={() => createQuiz()}/>
+					<Button isLoading={isLoading} disabled={getValidationStatus(questions) || !mainInfo.isValid || isLoading} fz='20px' width='300px' height='45px' text='Create Quiz' margin='0' clickHandler={() => createQuiz()}/>
 				</CreateQuizButtonWrapper>
 			</CreateQuizBlock>
 		</CreateQuizWrapper>
 	);
 };
-
-CreateQuiz.propTypes = {};

@@ -8,4 +8,8 @@ export const ProgressBarItem = styled.div`
 	width: ${({ percent }) => `${percent}%`};
 	position: absolute;
 	top: 0;
+
+  @media (max-width: 768px) {
+    height: 5px;
+  }
 `;

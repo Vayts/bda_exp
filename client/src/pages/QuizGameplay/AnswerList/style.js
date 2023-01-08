@@ -9,5 +9,12 @@ export const QuizAnswerButtons = styled.div`
 	margin-top: 20px;
 	div {
 		flex-basis: calc(50% - 20px);
+
+    @media (max-width: 768px) {
+      flex-basis: 100%;
+			font-size: 14px;
+			min-height: 50px;
+			margin-bottom: 10px;
+    }
 	}
 `;

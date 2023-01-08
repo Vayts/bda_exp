@@ -90,7 +90,7 @@ export const GameplayProcess = ({ quizItem }) => {
 							/>
 						</GameplayTimer>
 						<GameplayMainWindow>
-							{quizItem.withPhoto ? <GamePlayImg src={`${BASE_URL}/photo/download/${quiz.questions[stage - 1].photo}`}/> : null}
+							{quizItem.withPhoto ? <GamePlayImg src={`${BASE_URL}/photo/download/${quiz.questions[stage - 1].photo}`} alt='Quiz Img'/> : null}
 							<GamePlayQuestion>{`${stage}. ${quiz.questions[stage - 1].question}`}</GamePlayQuestion>
 							<AnswerList
 								answers={quiz.questions[stage - 1].answers}

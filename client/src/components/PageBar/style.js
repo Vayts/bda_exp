@@ -20,6 +20,10 @@ export const PageBarWrapper = styled.div`
   top: 0;
   bottom: 0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+	
+	@media (max-width: 768px) {
+		display: none;
+	}
 `;
 
 export const PageBarList = styled.ul`

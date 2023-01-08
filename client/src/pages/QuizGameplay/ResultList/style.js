@@ -7,6 +7,10 @@ export const ResultListWrapper = styled.ul`
 	flex-wrap: wrap;
 	margin: 0 0 10px;
 	padding: 0;
+	
+	@media (max-width: 768px) {
+    justify-content: center;
+	}
 `;
 
 export const ResultItem = styled.li`

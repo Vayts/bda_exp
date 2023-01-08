@@ -3,7 +3,7 @@ import { COLORS } from '@constants/colors';
 
 export const GameplayProcessWrapper = styled.div`
 	width: 100%;
-	height: 100vh;
+	min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,6 +25,16 @@ export const GameplayTimer = styled.div`
 	border-radius: 50%;
 	font-size: 25px;
 	color: ${COLORS.light.txt};
+
+  @media (max-width: 768px) {
+    width: 55px;
+		height: 55px;
+    font-size: 16px;
+    top: 15px;
+    right: 10px;
+    border: 1px dashed ${COLORS.light.primary};
+		font-weight: 600;
+  }
 `;
 
 export const QuizStageCounter = styled.div`
@@ -53,8 +63,13 @@ export const QuizStageMax = styled.p`
 `;
 
 export const GamePlayQuestion = styled.h2`
-	margin: 0 0 20px;
+	margin: 0 0 10px;
 	min-height: 80px;
+
+  @media (max-width: 768px) {
+    font-size: 18px;
+		min-height: 40px;
+  }
 `;
 
 export const GamePlayImg = styled.img`
@@ -64,10 +79,33 @@ export const GamePlayImg = styled.img`
 	margin: 0 auto 30px;
 	border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+
+  @media (max-width: 768px) {
+    width: 440px;
+		height: 300px;
+		margin-top: 150px;
+  }
+	
+	@media (max-width: 500px) {
+		width: 100%;
+		height: auto;
+	}
+
+  @media (max-height: 800px) {
+    margin-top: 100px;
+  }
 `;
 
 export const GameplayMainWindow = styled.div`
 	width: 1200px;
+	
+	@media (max-width: 1250px) {
+		width: 750px;
+	}
+
+  @media (max-width: 768px) {
+    width: 95%;
+  }
 `;
 
 export const GameplayBottomContent = styled.div`
