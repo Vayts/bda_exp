@@ -38,6 +38,7 @@ export const photoReducer = (state = initialState, action) => {
 	case SET_TRENDS:
 		return {
 			...state,
+			currentPage: 1,
 			trends: action.payload,
 		};
 	case SET_PAGE: {
@@ -53,6 +54,7 @@ export const photoReducer = (state = initialState, action) => {
 			...state,
 			searchPhoto: '',
 			categoriesList: [],
+			currentPage: 1,
 			page: 'home',
 		};
 	}
