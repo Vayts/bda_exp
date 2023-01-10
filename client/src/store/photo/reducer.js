@@ -1,22 +1,26 @@
 import {
-	ADD_CATEGORY,
+	ADD_CATEGORY, RESET_FILTERS, SET_CURRENT_PAGE, SET_PAGE, SET_PHOTO_SEARCH,
 	SET_PHOTOS,
-	SET_SEARCH,
 	SET_TRENDS,
 } from '@store/photo/actionTypes';
 
 const initialState = {
 	photoList: [],
 	categoriesList: [],
-	search: '',
+	searchPhoto: '',
 	trends: [],
+	page: 'home',
+	currentPage: 1,
 };
 
 export const photoReducer = (state = initialState, action) => {
 	switch (action.type) {
 	case ADD_CATEGORY: 
 		return { 
-			...state, 
+			...state,
+			searchPhoto: '',
+			page: null,
+			currentPage: 1,
 			categoriesList: action.payload, 
 		};
 	case SET_PHOTOS:
@@ -24,16 +28,42 @@ export const photoReducer = (state = initialState, action) => {
 			...state, 
 			photoList: action.payload,
 		};
-	case SET_SEARCH:
+	case SET_PHOTO_SEARCH:
 		return {
 			...state,
-			search: action.payload,
+			categoriesList: [],
+			currentPage: 1,
+			searchPhoto: action.payload,
 		};
 	case SET_TRENDS:
 		return {
 			...state,
+			currentPage: 1,
 			trends: action.payload,
 		};
+	case SET_PAGE: {
+		return {
+			...state,
+			searchPhoto: '',
+			page: action.payload,
+			currentPage: 1,
+		};
+	}
+	case RESET_FILTERS: {
+		return {
+			...state,
+			searchPhoto: '',
+			categoriesList: [],
+			currentPage: 1,
+			page: 'home',
+		};
+	}
+	case SET_CURRENT_PAGE: {
+		return {
+			...state,
+			currentPage: action.payload,
+		};
+	}
 	default:
 		return state;
 	}

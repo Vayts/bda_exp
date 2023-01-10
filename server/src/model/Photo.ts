@@ -1,9 +1,14 @@
 import mongoose from "mongoose";
+import moment from "moment";
 const Schema = mongoose.Schema;
 
 const PhotoSchema = new Schema({
   author: {
     type: String,
+    required: true,
+  },
+  author_id: {
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
   },
   title: {
@@ -12,11 +17,17 @@ const PhotoSchema = new Schema({
   },
   description: {
     type: String,
-    required: true,
+    required: false,
+    default: '',
   },
   categories: {
     type: Array,
     required: true,
+  },
+  time: {
+    type: Date,
+    required: true,
+    default: moment(),
   },
   source: {
     type: String,

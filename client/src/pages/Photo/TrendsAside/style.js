@@ -2,14 +2,27 @@ import styled from 'styled-components';
 import { COLORS } from '@constants/colors';
 
 export const TrendsWrapper = styled.aside`
-  flex-basis: 20%;
   flex-grow: 0;
+	position: sticky;
+	top: 40px;
+	
+	label {
+		box-shadow: none;
+    border: 1px solid rgba(124, 124, 124, 0.2);
+	}
+`;
+
+export const TrendsReset = styled.p`
+  text-decoration: underline;
+  text-align: center;
+  color: #737373;
+	cursor: pointer;
 `;
 
 export const TrendsContentWrapper = styled.div`
 	margin-bottom: 20px;
 	align-self: flex-start;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(124, 124, 124, 0.2);
   padding: 20px;
   border-radius: 10px;
   background-color: #fff;

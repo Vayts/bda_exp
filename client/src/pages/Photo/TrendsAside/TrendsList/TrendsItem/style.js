@@ -11,10 +11,11 @@ export const TrendTitle = styled.h5`
 	margin: 0;
 	cursor: pointer;
 	user-select: none;
+	color: ${({ isActive }) => (isActive ? COLORS.light.primary : 'inherit')};
 	
 	&:hover {
 		transition: all 0.2s;
-		color: ${COLORS.light.primary};
+		color: ${COLORS.light.hover};
 	}
 `;
 

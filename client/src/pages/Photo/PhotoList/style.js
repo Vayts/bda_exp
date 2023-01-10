@@ -4,7 +4,7 @@ export const PhotoListWrapper = styled.div`
   display: flex;
   justify-content: center;
 	flex-direction: column;
-	padding: 0 40px;
+	padding: 0;
 `;
 
 export const PhotoListContent = styled.ul`

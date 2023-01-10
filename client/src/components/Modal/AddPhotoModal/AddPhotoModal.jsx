@@ -6,7 +6,7 @@ import { ErrorMessage } from '@src/components/ErrorMessage/ErrorMessage';
 import { TextArea } from '@src/components/UI/TextArea/TextArea';
 import { Button } from '@src/components/UI/Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCategories, getSearch } from '@store/photo/selectors';
+import { getCategories, getSearchPhoto } from '@store/photo/selectors';
 import { sendPhotoAction } from '@store/photo/actions';
 import { fileTypeValidation } from '@helpers/photo.helper';
 import { getNotification } from '@src/notifications/notification';
@@ -18,7 +18,7 @@ import { useAxiosPrivate } from '@src/hooks/useAxiosPrivate';
 export const AddPhotoModal = () => {
 	const dispatch = useDispatch();
 	const categories = useSelector(getCategories);
-	const search = useSelector(getSearch);
+	const search = useSelector(getSearchPhoto);
 	const axiosPrivate = useAxiosPrivate();
 
 	const onSubmit = (values) => {
@@ -38,10 +38,10 @@ export const AddPhotoModal = () => {
 
 	const validationSchema = yup.object().shape({
 		description: yup.string()
-			.min(5)
-			.max(255, 'Must be less than 256 characters')
-			.required('Required field'),
+			.max(255, 'Must be less than 256 characters'),
 		title: yup.string()
+			.trim()
+			.strict()
 			.matches(DEFAULT_REGEX, 'Please enter valid title')
 			.min(5, 'Must be at least 5 characters')
 			.max(20, 'Must be less than 20 characters')

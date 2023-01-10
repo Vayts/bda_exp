@@ -21,8 +21,11 @@ export const Pagination = ({ perPage, length, setPage, currentPage, updateParam 
 				return (
 					<PaginationItem
 						isActive={currentPage === item}
-						onClick={() => setPage(item)}
-						key={uuidv4()}
+						onClick={() => {
+							window.scrollTo(0, 0);
+							setPage(item);
+						}}
+						key={item}
 					>
 						{item}
 					</PaginationItem>

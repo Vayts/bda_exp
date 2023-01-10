@@ -42,7 +42,7 @@ export const LoginForm = () => {
 				touched,
 			}) => {
 				return (
-					<>
+					<form>
 						<TextField
 							type="login"
 							onChange={handleChange}
@@ -72,8 +72,8 @@ export const LoginForm = () => {
 							margin='15px 0 15px'
 						/>
 						<ErrorMessage name="password"/>
-						<Button clickHandler={handleSubmit} margin='30px 0 0' width='100%' height='40px' fz='14px' isLoading={isLoading} text='Sign In'/>
-					</>
+						<Button type='submit' clickHandler={handleSubmit} margin='30px 0 0' width='100%' height='40px' fz='14px' isLoading={isLoading} text='Sign In'/>
+					</form>
 				);
 			}}
 		</Formik>
