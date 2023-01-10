@@ -35,6 +35,9 @@ export class PhotoService {
                 description,
                 categories: categoriesArr,
                 source: fileName,
+                likes: 0,
+                byUser: [false],
+                favorite: [false],
             })
             res.status(200).end();
         } catch (e) {
