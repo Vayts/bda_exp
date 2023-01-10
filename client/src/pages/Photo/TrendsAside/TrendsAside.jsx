@@ -4,7 +4,7 @@ import { TrendsList } from '@src/pages/Photo/TrendsAside/TrendsList/TrendsList';
 import { getCategoriesTop } from '@helpers/photo.helper';
 import { addCategoryAction, setSearch } from '@store/photo/actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPhotos, getSearch } from '@store/photo/selectors';
+import { getCategories, getPhotos, getSearch } from '@store/photo/selectors';
 import { Search } from '@src/components/UI/Search/Search';
 import { getModalState } from '@store/base/selectors';
 
@@ -13,6 +13,7 @@ export const TrendsAside = () => {
 	const dispatch = useDispatch();
 	const photoList = useSelector(getPhotos);
 	const search = useSelector(getSearch);
+	const categories = useSelector(getCategories);
 	const modal = useSelector(getModalState);
 	
 	useEffect(() => {
@@ -21,7 +22,7 @@ export const TrendsAside = () => {
 	}, [modal]);
 	
 	const setCategory = (value) => {
-		dispatch(addCategoryAction([], value));
+		dispatch(addCategoryAction(categories, value));
 	};
 	
 	return (
