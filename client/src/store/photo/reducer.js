@@ -30,6 +30,7 @@ export const photoReducer = (state = initialState, action) => {
 	case SET_SEARCH:
 		return {
 			...state,
+			categoriesList: [],
 			search: action.payload,
 		};
 	case SET_TRENDS:
