@@ -31,6 +31,8 @@ export const CreateQuiz = () => {
 	const [isLoading, setLoading] = useState(false);
 	
 	useEffect(() => {
+		document.title = 'bDa - Create Quiz';
+		
 		if (!user) {
 			navigate('/quiz');
 		}

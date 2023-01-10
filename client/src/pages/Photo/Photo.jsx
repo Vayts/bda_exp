@@ -18,6 +18,7 @@ export const Photo = () => {
 	const [isLoading, setLoading] = useState(false);
 	
 	useEffect(() => {
+		document.title = 'bDa - Photogram';
 		dispatch(setPhotoAction(categories, setLoading, search, user));
 		
 		return () => {

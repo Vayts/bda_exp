@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { NoPageContent, NoPageText, NoPageTitle, NoPageWrapper } from './style';
 
 export const NoPage = () => {
+	useEffect(() => {
+		document.title = 'bDa - ERROR';
+	}, []);
+	
 	return (
 		<NoPageWrapper>
 			<NoPageContent>

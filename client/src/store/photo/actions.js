@@ -1,7 +1,7 @@
 import {
 	ADD_CATEGORY, RESET_FILTERS, SET_CURRENT_PAGE, SET_PAGE, SET_PHOTO_SEARCH,
 	SET_PHOTOS,
-	SET_TRENDS,
+	SET_TRENDS, SET_USER_LIKES,
 } from '@store/photo/actionTypes';
 import { getNotification } from '@src/notifications/notification';
 import { setModalState } from '@store/base/actions';
@@ -48,8 +48,9 @@ export function setPhotoAction(categories, setLoading, search, user) {
 	};
 }
 
-export function sendPhotoAction(values, categories, search, axiosPrivate) {
+export function sendPhotoAction(values, categories, search, axiosPrivate, setLoading) {
 	return async (dispatch) => {
+		setLoading(true);
 		const formData = new FormData();
 		const keys = Object.keys(values);
 		keys.forEach((el) => {
@@ -60,21 +61,21 @@ export function sendPhotoAction(values, categories, search, axiosPrivate) {
 			}
 		});
 		try {
-			await axiosPrivate.post('/photo/upload', formData,
+			const response = await axiosPrivate.post('/photo/upload', formData,
 				{
 					headers: {
 						'Content-Type': 'multipart/form-data',
 					},
 				},
 			);
-		} catch (e) {
-			getNotification('Something went wrong!', 'error');
-		} finally {
 			dispatch(setModalState(null));
 			dispatch(setPage('home'));
 			getNotification('Photo has been uploaded', 'success');
-			dispatch(setPhotoAction(categories, () => {
-			}, search));
+			dispatch(setPhoto(response.data.value));
+		} catch (e) {
+			getNotification('Something went wrong!', 'error');
+		} finally {
+			setLoading(true);
 		}
 	};
 }
@@ -203,5 +204,24 @@ export function setCurrentPageAction(pageNumber) {
 	return {
 		type: SET_CURRENT_PAGE,
 		payload: pageNumber,
+	};
+}
+
+export function getUserLikes(id) {
+	return async (dispatch) => {
+		try {
+			const response = await axios.get(`/photo/user_photo_likes/${id}`);
+			dispatch(setUserLikes(response.data.value));
+			dispatch(setModalState('userLikes'));
+		} catch (e) {
+			getNotification('Something went wrong!', 'error');
+		}
+	};
+}
+
+export function setUserLikes(value) {
+	return {
+		type: SET_USER_LIKES,
+		payload: value,
 	};
 }

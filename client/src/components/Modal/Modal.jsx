@@ -9,6 +9,7 @@ import { AuthModal } from '@src/components/Modal/AuthModal/AuthModal';
 import { ExitModal } from '@src/components/Modal/ExitModal/ExitModal';
 import { QuizCategoriesModal } from '@src/components/Modal/QuizCategoriesModal/QuizCategoriesModal';
 import { EditPhotoModal } from '@src/components/Modal/EditPhotoModal/EditPhotoModal';
+import { UserLikesModal } from '@src/components/Modal/UsersLikesModal/UserLikesModal';
 import { ModalBackground, ModalWindow, CloseModal } from './style';
 
 export const Modal = () => {
@@ -40,6 +41,7 @@ export const Modal = () => {
 				{modal === 'exit' && <ExitModal/>}
 				{modal === 'quizCategories' && <QuizCategoriesModal/>}
 				{modal === 'editPhoto' && <EditPhotoModal/>}
+				{modal === 'userLikes' && <UserLikesModal/>}
 			</ModalWindow>
 		);
 	};
