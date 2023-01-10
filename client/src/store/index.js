@@ -16,7 +16,7 @@ export const rootReducer = combineReducers({
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));
 
-store.subscribe(() => {
-	// eslint-disable-next-line no-console
-	console.log(store.getState());
-});
+// store.subscribe(() => {
+// 	// eslint-disable-next-line no-console
+// 	console.log(store.getState());
+// });

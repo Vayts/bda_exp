@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Formik } from 'formik';
 import FileHandler from '@src/components/UI/FileHandler/FileHandler';
 import { TextField } from '@src/components/UI/TextField/TextField';
@@ -20,9 +20,10 @@ export const AddPhotoModal = () => {
 	const categories = useSelector(getCategories);
 	const search = useSelector(getSearchPhoto);
 	const axiosPrivate = useAxiosPrivate();
+	const [isLoading, setLoading] = useState(false);
 
 	const onSubmit = (values) => {
-		dispatch(sendPhotoAction(values, categories, search, axiosPrivate));
+		dispatch(sendPhotoAction(values, categories, search, axiosPrivate, setLoading));
 	};
 
 	const onFileChange = useCallback((setFieldValue, setFieldTouched) => {
@@ -121,7 +122,7 @@ export const AddPhotoModal = () => {
 								validation={touched.categories ? touched.categories && errors.categories ? 'error' : 'valid' : 'unTouched'}
 							/>
 							<ErrorMessage name="categories"/>
-							<Button primary clickHandler={handleSubmit} disabled={!(isValid && dirty) || !values.file.length} width="100%" type="submit" height='40px' text="Send" padding='5px 0' fz='16px'/>
+							<Button isLoading={isLoading} primary clickHandler={handleSubmit} disabled={!(isValid && dirty) || !values.file.length || isLoading} width="100%" type="submit" height='45px' text="Send" padding='5px 0' fz='16px'/>
 						</>
 					);
 				}}
