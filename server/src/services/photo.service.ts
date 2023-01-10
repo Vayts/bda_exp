@@ -3,8 +3,6 @@ import {Request, Response} from "express";
 import {Photo} from "../model/Photo";
 import {S3File} from "../interfaces/S3File.interface";
 import {UserLikes} from "../model/UserLikes";
-import {User} from "../model/User";
-import {Quiz} from "../model/Quiz";
 import mongoose from "mongoose";
 import {UserFavorites} from "../model/UserFavorites";
 import moment from "moment";
@@ -143,7 +141,8 @@ export class PhotoService {
                             'byUser': [{ $in: [new mongoose.Types.ObjectId(_id), '$likes.user_id'] }],
                             'favorite': [{ $in: [new mongoose.Types.ObjectId(_id), '$favorites.user_id'] }],
                         }
-                    }
+                    },
+                    { $sort: { time: -1 } },
                 ])
                 return res.status(200).send({value: result[0]});
             })
@@ -194,7 +193,8 @@ export class PhotoService {
                             'byUser': [{ $in: [new mongoose.Types.ObjectId(_id), '$likes.user_id'] }],
                             'favorite': [{ $in: [new mongoose.Types.ObjectId(_id), '$favorites.user_id'] }],
                         }
-                    }
+                    },
+                    { $sort: { time: -1 } },
                 ])
                 return res.status(200).send({value: result[0]});
             })
@@ -231,7 +231,8 @@ export class PhotoService {
                         'byUser': [{ $in: [new mongoose.Types.ObjectId(_id), '$likes.user_id'] }],
                         'favorite': [{ $in: [new mongoose.Types.ObjectId(_id), '$favorites.user_id'] }],
                     }
-                }
+                },
+                { $sort: { time: -1 } },
             ])
             return res.status(200).send({value: result});
         } catch (e) {
@@ -267,7 +268,8 @@ export class PhotoService {
                         'byUser': [{ $in: [new mongoose.Types.ObjectId(_id), '$likes.user_id'] }],
                         'favorite': [{ $in: [new mongoose.Types.ObjectId(_id), '$favorites.user_id'] }],
                     }
-                }
+                },
+                { $sort: { time: -1 } },
             ])
             return res.status(200).send({value: result});
         } catch (e) {
@@ -303,7 +305,8 @@ export class PhotoService {
                         'byUser': [{ $in: [new mongoose.Types.ObjectId(_id), '$likes.user_id'] }],
                         'favorite': [{ $in: [new mongoose.Types.ObjectId(_id), '$favorites.user_id'] }],
                     }
-                }
+                },
+                { $sort: { time: -1 } },
             ])
             return res.status(200).send({value: result});
         } catch (e) {
