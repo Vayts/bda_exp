@@ -28,6 +28,7 @@ export const Quiz = () => {
 	const [isLoading, setLoading] = useState(true);
 	
 	useEffect(() => {
+		document.title = 'bDa - Quiz';
 		dispatch(getQuizFetch(setLoading, category, search));
 		setCurrentPage(1);
 		

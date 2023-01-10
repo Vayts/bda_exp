@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { MainContent, MainList, MainTitle, MainWrapper } from '@src/pages/MainPage/style';
 import { MENU } from '@constants/menuItem';
 import { PageItem } from '@src/pages/MainPage/PageItem/PageItem';
 
 export const MainPage = () => {
+	useEffect(() => {
+		document.title = 'bDa - Main';
+	}, []);
+	
 	return (
 		<MainWrapper>
 			<MainContent>
