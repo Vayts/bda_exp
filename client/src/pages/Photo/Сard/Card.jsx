@@ -9,7 +9,7 @@ import {
 } from '@src/pages/Photo/Сard/style';
 import { BASE_URL } from '@constants/base';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCategoryAction, likePhoto, makePhotoFavorite } from '@store/photo/actions';
+import { addCategoryAction, getUserLikes, likePhoto, makePhotoFavorite } from '@store/photo/actions';
 import { useAxiosPrivate } from '@src/hooks/useAxiosPrivate';
 import { getPhotos } from '@store/photo/selectors';
 import { getUser } from '@store/base/selectors';
@@ -59,6 +59,10 @@ export const Card = ({ item }) => {
 		}, 400);
 	};
 	
+	const userLikesFetch = (id) => {
+		dispatch(getUserLikes(id));
+	};
+	
 	const setCategory = (value) => {
 		dispatch(addCategoryAction([], value));
 	};
@@ -78,7 +82,7 @@ export const Card = ({ item }) => {
 				<CardControls>
 					<CardLikeWrapper>
 						<CardLikeButton className={item.byUser[0] ? 'icon-like' : 'icon-no-like'} onClick={(e) => likeHandler(e, item._id)}/>
-						{item.likes > 0 ? <CardLikeCounter>{item.likes}</CardLikeCounter> : null}
+						{item.likes > 0 ? <CardLikeCounter onClick={() => userLikesFetch(item._id)}>{item.likes}</CardLikeCounter> : null}
 					</CardLikeWrapper>
 					<CardFavoriteButton className={item.favorite[0] ? 'icon-saved' : 'icon-no-saved'} onClick={(e) => favoriteHandler(e, item._id)}/>
 				</CardControls>

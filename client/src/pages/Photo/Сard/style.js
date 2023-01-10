@@ -102,6 +102,7 @@ export const CardLikeWrapper = styled.div`
 export const CardLikeCounter = styled.p`
 	font-size: 20px;
 	margin: 0;
+	cursor: pointer;
 `;
 
 export const CardLikeButton = styled.div`

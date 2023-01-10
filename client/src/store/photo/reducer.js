@@ -1,7 +1,7 @@
 import {
 	ADD_CATEGORY, RESET_FILTERS, SET_CURRENT_PAGE, SET_PAGE, SET_PHOTO_SEARCH,
 	SET_PHOTOS,
-	SET_TRENDS,
+	SET_TRENDS, SET_USER_LIKES,
 } from '@store/photo/actionTypes';
 
 const initialState = {
@@ -11,6 +11,7 @@ const initialState = {
 	trends: [],
 	page: 'home',
 	currentPage: 1,
+	userLikes: [],
 };
 
 export const photoReducer = (state = initialState, action) => {
@@ -32,6 +33,7 @@ export const photoReducer = (state = initialState, action) => {
 		return {
 			...state,
 			categoriesList: [],
+			page: null,
 			currentPage: 1,
 			searchPhoto: action.payload,
 		};
@@ -62,6 +64,12 @@ export const photoReducer = (state = initialState, action) => {
 		return {
 			...state,
 			currentPage: action.payload,
+		};
+	}
+	case SET_USER_LIKES: {
+		return {
+			...state,
+			userLikes: action.payload,
 		};
 	}
 	default:

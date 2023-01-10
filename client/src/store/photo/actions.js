@@ -1,7 +1,7 @@
 import {
 	ADD_CATEGORY, RESET_FILTERS, SET_CURRENT_PAGE, SET_PAGE, SET_PHOTO_SEARCH,
 	SET_PHOTOS,
-	SET_TRENDS,
+	SET_TRENDS, SET_USER_LIKES,
 } from '@store/photo/actionTypes';
 import { getNotification } from '@src/notifications/notification';
 import { setModalState } from '@store/base/actions';
@@ -204,5 +204,24 @@ export function setCurrentPageAction(pageNumber) {
 	return {
 		type: SET_CURRENT_PAGE,
 		payload: pageNumber,
+	};
+}
+
+export function getUserLikes(id) {
+	return async (dispatch) => {
+		try {
+			const response = await axios.get(`/photo/user_photo_likes/${id}`);
+			dispatch(setUserLikes(response.data.value));
+			dispatch(setModalState('userLikes'));
+		} catch (e) {
+			getNotification('Something went wrong!', 'error');
+		}
+	};
+}
+
+export function setUserLikes(value) {
+	return {
+		type: SET_USER_LIKES,
+		payload: value,
 	};
 }
