@@ -20,6 +20,7 @@ export const photoReducer = (state = initialState, action) => {
 			...state,
 			searchPhoto: '',
 			page: null,
+			currentPage: 1,
 			categoriesList: action.payload, 
 		};
 	case SET_PHOTOS:
@@ -31,6 +32,7 @@ export const photoReducer = (state = initialState, action) => {
 		return {
 			...state,
 			categoriesList: [],
+			currentPage: 1,
 			searchPhoto: action.payload,
 		};
 	case SET_TRENDS:
