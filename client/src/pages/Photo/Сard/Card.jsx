@@ -18,7 +18,7 @@ import { Loader } from '@src/components/Loader/Loader';
 import moment from 'moment';
 import { v4 as uuid } from 'uuid';
 
-export const Card = ({ item, order }) => {
+export const Card = ({ item }) => {
 	const dispatch = useDispatch();
 	const axiosPrivate = useAxiosPrivate();
 	const photos = useSelector(getPhotos);
@@ -64,7 +64,7 @@ export const Card = ({ item, order }) => {
 	};
 	
 	return (
-		<CardWrapper order={order} isLoad={isLoad}>
+		<CardWrapper isLoad={isLoad}>
 			<CardTitleWrapper>
 				<CardAuthorPhoto>{item.author.slice(0, 1)}</CardAuthorPhoto>
 				<CardAuthorName>{item.author}</CardAuthorName>
@@ -88,7 +88,7 @@ export const Card = ({ item, order }) => {
 						return <CardCategoryItem key={uuid()} onClick={() => setCategory(category)}>{`#${category}`}</CardCategoryItem>;
 					})}
 				</CardCategories>
-				<CardDescription>{`${item.author}: ${item.description}`}</CardDescription>
+				{item.description ? <CardDescription>{`${item.author}: ${item.description}`}</CardDescription> : null}
 			</CardBottomContent>
 		</CardWrapper>
 	);
@@ -107,5 +107,4 @@ Card.propTypes = {
 		favorite: PropTypes.array,
 		time: PropTypes.string,
 	}),
-	order: PropTypes.number,
 };

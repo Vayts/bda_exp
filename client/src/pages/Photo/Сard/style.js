@@ -27,7 +27,7 @@ const like = keyframes`
 
 export const CardWrapper = styled.li`
   margin-bottom: 30px;
-  animation: ${appear} ${({ order }) => `0.${order * 3 + 2}s`} linear;
+  animation: ${appear} 0.3s linear;
   border-radius: 2px;
   border: 1px solid rgba(124, 124, 124, 0.2);
 `;

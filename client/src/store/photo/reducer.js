@@ -1,16 +1,16 @@
 import {
-	ADD_CATEGORY, SET_PAGE,
+	ADD_CATEGORY, RESET_FILTERS, SET_CURRENT_PAGE, SET_PAGE, SET_PHOTO_SEARCH,
 	SET_PHOTOS,
-	SET_SEARCH,
 	SET_TRENDS,
 } from '@store/photo/actionTypes';
 
 const initialState = {
 	photoList: [],
 	categoriesList: [],
-	search: '',
+	searchPhoto: '',
 	trends: [],
 	page: 'home',
+	currentPage: 1,
 };
 
 export const photoReducer = (state = initialState, action) => {
@@ -18,7 +18,7 @@ export const photoReducer = (state = initialState, action) => {
 	case ADD_CATEGORY: 
 		return { 
 			...state,
-			search: '',
+			searchPhoto: '',
 			page: null,
 			categoriesList: action.payload, 
 		};
@@ -27,11 +27,11 @@ export const photoReducer = (state = initialState, action) => {
 			...state, 
 			photoList: action.payload,
 		};
-	case SET_SEARCH:
+	case SET_PHOTO_SEARCH:
 		return {
 			...state,
 			categoriesList: [],
-			search: action.payload,
+			searchPhoto: action.payload,
 		};
 	case SET_TRENDS:
 		return {
@@ -41,8 +41,23 @@ export const photoReducer = (state = initialState, action) => {
 	case SET_PAGE: {
 		return {
 			...state,
-			search: '',
+			searchPhoto: '',
 			page: action.payload,
+			currentPage: 1,
+		};
+	}
+	case RESET_FILTERS: {
+		return {
+			...state,
+			searchPhoto: '',
+			categoriesList: [],
+			page: 'home',
+		};
+	}
+	case SET_CURRENT_PAGE: {
+		return {
+			...state,
+			currentPage: action.payload,
 		};
 	}
 	default:

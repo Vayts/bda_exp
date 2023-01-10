@@ -5,7 +5,7 @@ import {
 } from '@src/pages/Quiz/style';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getQuizFetch, getQuizTrendsFetch, setCategory, setCurrent } from '@store/quiz/actions';
+import { getQuizFetch, getQuizTrendsFetch, setCategory, setCurrent, setQuizSearch } from '@store/quiz/actions';
 import { getCategory, getQuizTrends, getSearch } from '@store/quiz/selectors';
 import { QuizList } from '@src/pages/Quiz/QuizList/QuizList';
 import { PageMenu } from '@src/components/PageMenu/PageMenu';
@@ -15,7 +15,7 @@ import { Loader } from '@src/components/Loader/Loader';
 import { removeModal, setModalState } from '@store/base/actions';
 import { getUser } from '@store/base/selectors';
 import { Search } from '@src/components/UI/Search/Search';
-import { setSearch } from '@store/photo/actions';
+import { resetFiltersAction } from '@store/photo/actions';
 
 export const Quiz = () => {
 	const dispatch = useDispatch();
@@ -38,6 +38,7 @@ export const Quiz = () => {
 		return () => {
 			dispatch(setCurrent(null));
 			dispatch(removeModal());
+			dispatch(resetFiltersAction());
 		};
 	}, [category, search]);
 	
@@ -58,7 +59,7 @@ export const Quiz = () => {
 							<QuizTitle>Quizzes</QuizTitle>
 							{user ? <Button text='Create quiz' height='20px' width='200px' fz='14px' clickHandler={() => navigateToCreate()}/> : null}
 						</QuizTitleWrapper>
-						<Search placeholder='Quiz name' width='300px' margin='10px 20px 0 0' height='35px' fz='16px' value={search} action={setSearch}/>
+						<Search placeholder='Quiz name' width='300px' margin='10px 20px 0 0' height='35px' fz='16px' value={search} action={setQuizSearch}/>
 					</QuizUpContent>
 					<QuizControls>
 						<PageMenu

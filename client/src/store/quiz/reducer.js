@@ -1,4 +1,12 @@
-import { SET_CATEGORY, SET_CURRENT, SET_GAME_QUIZ, SET_QUIZ_LIST, SET_QUIZ_TRENDS, SET_RESULTS, SET_SEARCH } from '@store/quiz/actionTypes';
+import {
+	SET_CATEGORY,
+	SET_CURRENT,
+	SET_GAME_QUIZ,
+	SET_QUIZ_LIST,
+	SET_QUIZ_SEARCH,
+	SET_QUIZ_TRENDS,
+	SET_RESULTS,
+} from '@store/quiz/actionTypes';
 
 const initialState = {
 	quizList: [],
@@ -38,7 +46,7 @@ export const quizReducer = (state = initialState, action) => {
 			...state,
 			gameQuiz: action.payload,
 		};
-	case SET_SEARCH:
+	case SET_QUIZ_SEARCH:
 		return {
 			...state,
 			search: action.payload,

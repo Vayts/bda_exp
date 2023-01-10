@@ -1,7 +1,6 @@
 import {
-	ADD_CATEGORY, SET_PAGE,
+	ADD_CATEGORY, RESET_FILTERS, SET_CURRENT_PAGE, SET_PAGE, SET_PHOTO_SEARCH,
 	SET_PHOTOS,
-	SET_SEARCH,
 	SET_TRENDS,
 } from '@store/photo/actionTypes';
 import { getNotification } from '@src/notifications/notification';
@@ -72,6 +71,7 @@ export function sendPhotoAction(values, categories, search, axiosPrivate) {
 			getNotification('Something went wrong!', 'error');
 		} finally {
 			dispatch(setModalState(null));
+			dispatch(setPage('home'));
 			getNotification('Photo has been uploaded', 'success');
 			dispatch(setPhotoAction(categories, () => {
 			}, search));
@@ -93,9 +93,9 @@ export function addCategory(value) {
 	};
 }
 
-export function setSearch(value) {
+export function setPhotoSearch(value) {
 	return {
-		type: SET_SEARCH,
+		type: SET_PHOTO_SEARCH,
 		payload: value,
 	};
 }
@@ -190,5 +190,18 @@ export function getUserPhotos(axiosPrivate) {
 		} catch (e) {
 			getNotification('Something went wrong!', 'error');
 		}
+	};
+}
+
+export function resetFiltersAction() {
+	return {
+		type: RESET_FILTERS,
+	};
+}
+
+export function setCurrentPageAction(pageNumber) {
+	return {
+		type: SET_CURRENT_PAGE,
+		payload: pageNumber,
 	};
 }

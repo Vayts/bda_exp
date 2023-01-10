@@ -1,4 +1,12 @@
-import { SET_CATEGORY, SET_CURRENT, SET_GAME_QUIZ, SET_QUIZ_LIST, SET_QUIZ_TRENDS, SET_RESULTS } from '@store/quiz/actionTypes';
+import {
+	SET_CATEGORY,
+	SET_CURRENT,
+	SET_GAME_QUIZ,
+	SET_QUIZ_LIST,
+	SET_QUIZ_SEARCH,
+	SET_QUIZ_TRENDS,
+	SET_RESULTS,
+} from '@store/quiz/actionTypes';
 import { getNotification } from '@src/notifications/notification';
 import axios from '@src/api/axios';
 
@@ -68,6 +76,13 @@ export const setQuiz = (quiz) => {
 	return {
 		type: SET_GAME_QUIZ,
 		payload: quiz,
+	};
+};
+
+export const setQuizSearch = (search) => {
+	return {
+		type: SET_QUIZ_SEARCH,
+		payload: search,
 	};
 };
 

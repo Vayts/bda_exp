@@ -14,7 +14,6 @@ export const PhotoMain = styled.div`
 export const PhotoContentSplitter = styled.div`
 	&:first-child {
 		flex-basis: 20%;
-		padding-right: 20px;
 		
 		label {
       border: 1px solid rgba(124, 124, 124, 0.2);

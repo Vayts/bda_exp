@@ -10,7 +10,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from '@store/base/selectors';
 import { Button } from '@src/components/UI/Button/Button';
 import { setModalState } from '@store/base/actions';
-import { getFavoritesPhotos, getLikedPhotos, getUserPhotos, setPage, setPhotoAction, setSearch } from '@store/photo/actions';
+import {
+	getFavoritesPhotos,
+	getLikedPhotos,
+	getUserPhotos,
+	setPage,
+	setPhotoAction,
+	setPhotoSearch,
+} from '@store/photo/actions';
 import { useAxiosPrivate } from '@src/hooks/useAxiosPrivate';
 import { getPage } from '@store/photo/selectors';
 
@@ -48,7 +55,7 @@ export const ProfileAside = () => {
 	const goToHome = () => {
 		window.scrollTo(0, 0);
 		dispatch(setPage('home'));
-		dispatch(setSearch(''));
+		dispatch(setPhotoSearch(''));
 		dispatch(setPhotoAction([], () => {}, '', user));
 	};
 	
@@ -57,7 +64,7 @@ export const ProfileAside = () => {
 			<ProfileAsideContent>
 				<ProfileUpContent>
 					<ProfileAvatarFiller>{user.login.slice(0, 1)}</ProfileAvatarFiller>
-					<ProfileUserLogin length={user.login.length}>{`@${user.login}`}</ProfileUserLogin>
+					<ProfileUserLogin length={user.login.length}>{user.login}</ProfileUserLogin>
 				</ProfileUpContent>
 				<ProfileBottomContent>
 					<ProfileBottomItem isActive={page === 'home'} onClick={() => goToHome()}>
