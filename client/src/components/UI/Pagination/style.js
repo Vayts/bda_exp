@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { COLORS } from '@constants/colors';
 
 export const PaginationWrapper = styled.div`
 	display: flex;
@@ -37,7 +38,7 @@ export const PaginationDots = styled.div`
 `;
 
 export const PaginationItem = styled.div`
-	background-color: ${({ isActive }) => (isActive ? '#0199fe' : 'transparent')};
+	background-color: ${({ isActive }) => (isActive ? COLORS.light.primary : 'transparent')};
 	color: ${({ isActive }) => (isActive ? '#fff' : '#1d1d1d')};
 	font-size: 18px;
 	margin-right: 10px;
@@ -49,6 +50,6 @@ export const PaginationItem = styled.div`
   justify-content: center;
 	
 	&:hover {
-		background-color: ${({ isActive }) => (isActive ? '#0199fe' : '#cecece')};
+		background-color: ${({ isActive }) => (isActive ? COLORS.light.primary : '#cecece')};
 	}
 `;

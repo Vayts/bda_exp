@@ -25,40 +25,57 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-edit:before {
-  content: "\e90a";
+.icon-home:before {
+  content: "\e90f";
 }
 
-.icon-user:before {
+.icon-gallery:before {
+  content: "\e90e";
+}
+
+.icon-no-saved:before {
+  content: "\e90c";
+}
+.icon-saved:before {
+  content: "\e90d";
+}
+
+.icon-like:before {
   content: "\e900";
 }
-.icon-exit:before {
+.icon-no-like:before {
   content: "\e901";
+}
+.icon-user:before {
+  content: "\e902";
+}
+.icon-exit:before {
+  content: "\e903";
   color: #ec2c32;
 }
 .icon-swap:before {
-  content: "\e902";
-}
-.icon-arrow-down:before {
-  content: "\e903";
-}
-.icon-arrow-up:before {
   content: "\e904";
 }
-.icon-converter:before {
+.icon-arrow-down:before {
   content: "\e905";
 }
-.icon-photo:before {
+.icon-arrow-up:before {
   content: "\e906";
 }
-.icon-quiz:before {
+.icon-converter:before {
   content: "\e907";
 }
-.icon-question:before {
+.icon-photo:before {
   content: "\e908";
 }
-.icon-time:before {
+.icon-quiz:before {
   content: "\e909";
+}
+.icon-question:before {
+  content: "\e90a";
+}
+.icon-time:before {
+  content: "\e90b";
 }
 .icon-search:before {
   content: "\e922";

@@ -15,7 +15,6 @@ export const QuizList = ({ currentPage, setCurrentPage }) => {
 		const lastPhotoIndex = currentPage * quizPerPage;
 		const firstPhotoIndex = lastPhotoIndex - quizPerPage;
 		setCurrentQuizzes(list.slice(firstPhotoIndex, lastPhotoIndex));
-		window.scrollTo(0, 0);
 	}, [currentPage, list]);
 	
 	return (

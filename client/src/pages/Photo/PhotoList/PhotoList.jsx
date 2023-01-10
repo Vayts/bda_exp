@@ -16,7 +16,6 @@ export const PhotoList = ({ photoPerPage }) => {
 		const lastPhotoIndex = currentPage * photoPerPage;
 		const firstPhotoIndex = lastPhotoIndex - photoPerPage;
 		setCurrentPhotos(photoList.slice(firstPhotoIndex, lastPhotoIndex));
-		window.scrollTo(0, 0);
 	}, [currentPage, photoList]);
 	
 	return (

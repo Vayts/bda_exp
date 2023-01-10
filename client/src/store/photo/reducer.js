@@ -1,5 +1,5 @@
 import {
-	ADD_CATEGORY,
+	ADD_CATEGORY, SET_PAGE,
 	SET_PHOTOS,
 	SET_SEARCH,
 	SET_TRENDS,
@@ -10,13 +10,16 @@ const initialState = {
 	categoriesList: [],
 	search: '',
 	trends: [],
+	page: 'home',
 };
 
 export const photoReducer = (state = initialState, action) => {
 	switch (action.type) {
 	case ADD_CATEGORY: 
 		return { 
-			...state, 
+			...state,
+			search: '',
+			page: null,
 			categoriesList: action.payload, 
 		};
 	case SET_PHOTOS:
@@ -34,6 +37,13 @@ export const photoReducer = (state = initialState, action) => {
 			...state,
 			trends: action.payload,
 		};
+	case SET_PAGE: {
+		return {
+			...state,
+			search: '',
+			page: action.payload,
+		};
+	}
 	default:
 		return state;
 	}
