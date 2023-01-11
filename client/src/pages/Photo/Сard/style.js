@@ -54,6 +54,14 @@ export const CardAuthorPhoto = styled.div`
   text-transform: uppercase;
 `;
 
+export const ContextMenuWrapper = styled.div`
+  position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 10px;
+	z-index: 10;
+`;
+
 export const CardAuthorName = styled.p`
 	font-size: 20px;
 	margin: 0;
@@ -69,7 +77,7 @@ export const CardTime = styled.span`
   font-size: 16px;
   color: #8f8f8f;
   position: absolute;
-  top: 15px;
+  bottom: 15px;
   right: 15px;
 `;
 
@@ -85,8 +93,9 @@ export const CardImage = styled.img`
 `;
 
 export const CardBottomContent = styled.div`
-	padding: 10px;
+	padding: 10px 10px 30px;
   background-color: #fff;
+  position: relative;
 `;
 
 export const CardControls = styled.div`

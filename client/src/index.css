@@ -25,6 +25,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-more:before {
+  content: "\e912";
+}
+
+.icon-delete:before {
+  content: "\e911";
+}
+
 .icon-edit:before {
   content: "\e910";
 }

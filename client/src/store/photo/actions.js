@@ -225,3 +225,20 @@ export function setUserLikes(value) {
 		payload: value,
 	};
 }
+
+export function deleteUserPhoto(axiosPrivate, id, photos) {
+	return async (dispatch) => {
+		try {
+			await axiosPrivate.delete(`/photo/delete_photo/${id}`);
+			const newState = photos.filter((item) => {
+				if (item._id !== id) {
+					return item;
+				}
+				return null;
+			});
+			dispatch(setPhoto(newState));
+		} catch (e) {
+			getNotification('Something went wrong!', 'error');
+		}
+	};
+}
