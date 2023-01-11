@@ -54,9 +54,9 @@ export const ProfileAside = () => {
 	
 	const goToHome = () => {
 		window.scrollTo(0, 0);
-		dispatch(setPage('home'));
 		dispatch(setPhotoSearch(''));
 		dispatch(setPhotoAction([], () => {}, '', user));
+		dispatch(setPage('home'));
 	};
 	
 	return (

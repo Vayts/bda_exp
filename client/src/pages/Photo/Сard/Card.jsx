@@ -5,11 +5,11 @@ import {
 	CardAuthorPhoto, CardBottomContent, CardCategories, CardCategoryItem, CardControls, CardDescription, CardFavoriteButton,
 	CardImage, CardImageWrapper, CardLikeButton, CardLikeCounter, CardLikeWrapper, CardTime, CardTitle,
 	CardTitleWrapper,
-	CardWrapper,
+	CardWrapper, ContextMenuWrapper,
 } from '@src/pages/Photo/Сard/style';
 import { BASE_URL } from '@constants/base';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCategoryAction, getUserLikes, likePhoto, makePhotoFavorite } from '@store/photo/actions';
+import { addCategoryAction, deleteUserPhoto, getUserLikes, likePhoto, makePhotoFavorite } from '@store/photo/actions';
 import { useAxiosPrivate } from '@src/hooks/useAxiosPrivate';
 import { getPhotos } from '@store/photo/selectors';
 import { getUser } from '@store/base/selectors';
@@ -17,6 +17,7 @@ import { setModalState } from '@store/base/actions';
 import { Loader } from '@src/components/Loader/Loader';
 import moment from 'moment';
 import { v4 as uuid } from 'uuid';
+import { ContextMenu } from '@src/components/ContextMenu/ContextMenu';
 
 export const Card = ({ item }) => {
 	const dispatch = useDispatch();
@@ -26,7 +27,6 @@ export const Card = ({ item }) => {
 	const [isLoad, setLoad] = useState(false);
 	const [isLikeLoading, setLikeLoading] = useState(false);
 	const [isFavoriteLoading, setFavoriteLoading] = useState(false);
-	
 	const likeHandler = (e, id) => {
 		if (isLikeLoading) {
 			return;
@@ -67,12 +67,20 @@ export const Card = ({ item }) => {
 		dispatch(addCategoryAction([], value));
 	};
 	
+	const deletePhoto = (id) => {
+		dispatch(deleteUserPhoto(axiosPrivate, id, photos));
+	};
+	
 	return (
 		<CardWrapper isLoad={isLoad}>
 			<CardTitleWrapper>
 				<CardAuthorPhoto>{item.author.slice(0, 1)}</CardAuthorPhoto>
 				<CardAuthorName>{item.author}</CardAuthorName>
-				<CardTime>{moment(item.time).format('DD/MM/YYYY HH:mm')}</CardTime>
+				{item.author_id === user._id ? (
+					<ContextMenuWrapper>
+						<ContextMenu deleteClick={() => deletePhoto(item._id)}/>
+					</ContextMenuWrapper>
+				) : null}
 			</CardTitleWrapper>
 			<CardImageWrapper>
 				{isLoad ? null : <Loader size={50}/>}
@@ -93,6 +101,7 @@ export const Card = ({ item }) => {
 					})}
 				</CardCategories>
 				{item.description ? <CardDescription>{`${item.author}: ${item.description}`}</CardDescription> : null}
+				<CardTime>{moment(item.time).format('DD/MM/YYYY HH:mm')}</CardTime>
 			</CardBottomContent>
 		</CardWrapper>
 	);
@@ -101,6 +110,7 @@ export const Card = ({ item }) => {
 Card.propTypes = {
 	item: PropTypes.shape({
 		_id: PropTypes.string,
+		author_id: PropTypes.string,
 		author: PropTypes.string,
 		source: PropTypes.string,
 		title: PropTypes.string,
