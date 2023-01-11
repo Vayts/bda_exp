@@ -76,7 +76,7 @@ export const Card = ({ item }) => {
 			<CardTitleWrapper>
 				<CardAuthorPhoto>{item.author.slice(0, 1)}</CardAuthorPhoto>
 				<CardAuthorName>{item.author}</CardAuthorName>
-				{item.author_id === user._id ? (
+				{item.author_id === user?._id ? (
 					<ContextMenuWrapper>
 						<ContextMenu deleteClick={() => deletePhoto(item._id)}/>
 					</ContextMenuWrapper>
