@@ -30,6 +30,7 @@ export const CardWrapper = styled.li`
   animation: ${appear} 0.3s linear;
   border-radius: 2px;
   border: 1px solid rgba(124, 124, 124, 0.2);
+	background-color: #fff;
 `;
 
 export const CardTitleWrapper = styled.div`
@@ -71,14 +72,18 @@ export const CardImageWrapper = styled.div`
   width: 100%;
   height: 550px;
   position: relative;
+  border-top: 1px solid rgba(124, 124, 124, 0.2);
+  border-bottom: 1px solid rgba(124, 124, 124, 0.2);
 `;
 
 export const CardTime = styled.span`
   font-size: 16px;
   color: #8f8f8f;
+	align-self: flex-start;
   position: absolute;
-  bottom: 15px;
-  right: 15px;
+	top: 0;
+	right: 20px;
+	cursor: default;
 `;
 
 export const CardImage = styled.img`
@@ -93,9 +98,17 @@ export const CardImage = styled.img`
 `;
 
 export const CardBottomContent = styled.div`
-	padding: 10px 10px 30px;
+	padding: 10px 20px 10px;
   background-color: #fff;
   position: relative;
+`;
+
+export const CardSubContent = styled.div`
+	display: flex;
+	padding: 0 20px 15px;
+	align-items: flex-start;
+  position: relative;
+	min-height: 35px;
 `;
 
 export const CardControls = styled.div`

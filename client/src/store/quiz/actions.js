@@ -10,23 +10,6 @@ import {
 import { getNotification } from '@src/notifications/notification';
 import axios from '@src/api/axios';
 
-export function getQuizFetch(setLoading, category, search) {
-	return async (dispatch) => {
-		setLoading(true);
-		try {
-			if (category === 'all') {
-				category = '';
-			}
-			const response = await axios.get(`/quiz/get_all?category=${category}&search=${search}`);
-			dispatch(setQuizList(response.data.value));
-		} catch (err) {
-			getNotification('Something went wrong!', 'error');
-		} finally {
-			setLoading(false);
-		}
-	};
-}
-
 export const setQuizList = (result) => {
 	return {
 		type: SET_QUIZ_LIST,
@@ -45,6 +28,27 @@ export const setCategory = (category) => {
 	return {
 		type: SET_CATEGORY,
 		payload: category,
+	};
+};
+
+export const setQuiz = (quiz) => {
+	return {
+		type: SET_GAME_QUIZ,
+		payload: quiz,
+	};
+};
+
+export const setQuizSearch = (search) => {
+	return {
+		type: SET_QUIZ_SEARCH,
+		payload: search,
+	};
+};
+
+export const setQuizTrends = (trends) => {
+	return {
+		type: SET_QUIZ_TRENDS,
+		payload: trends,
 	};
 };
 
@@ -72,27 +76,6 @@ export const getQuiz = (id, setLoading, navigate) => {
 	};
 };
 
-export const setQuiz = (quiz) => {
-	return {
-		type: SET_GAME_QUIZ,
-		payload: quiz,
-	};
-};
-
-export const setQuizSearch = (search) => {
-	return {
-		type: SET_QUIZ_SEARCH,
-		payload: search,
-	};
-};
-
-export const setQuizTrends = (trends) => {
-	return {
-		type: SET_QUIZ_TRENDS,
-		payload: trends,
-	};
-};
-
 export const getResultsFetch = (userAnswers, id) => {
 	return async (dispatch) => {
 		const body = {
@@ -113,6 +96,23 @@ export const getResultsFetch = (userAnswers, id) => {
 		}
 	};
 };
+
+export function getQuizFetch(setLoading, category, search) {
+	return async (dispatch) => {
+		setLoading(true);
+		try {
+			if (category === 'all') {
+				category = '';
+			}
+			const response = await axios.get(`/quiz/get_all?category=${category}&search=${search}`);
+			dispatch(setQuizList(response.data.value));
+		} catch (err) {
+			getNotification('Something went wrong!', 'error');
+		} finally {
+			setLoading(false);
+		}
+	};
+}
 
 export const setResult = (result) => {
 	return {

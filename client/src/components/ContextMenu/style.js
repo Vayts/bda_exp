@@ -25,7 +25,7 @@ export const ContextMenuButton = styled.div`
 
 export const ContextMenuList = styled.ul`
   background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   position: absolute;
   top: 100%;
   left: 100%;

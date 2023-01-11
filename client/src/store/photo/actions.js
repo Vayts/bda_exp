@@ -39,8 +39,6 @@ export function setPhotoAction(categories, setLoading, search, user) {
 			const response = await axios.get(`/photo/list?categories=${searchQuery}`, config);
 			dispatch(setPhoto(response.data.value));
 		} catch (e) {
-			// eslint-disable-next-line no-console
-			console.log(e);
 			getNotification('Something went wrong!', 'error');
 		} finally {
 			setLoading(false);
@@ -235,6 +233,44 @@ export function deleteUserPhoto(axiosPrivate, id, photos) {
 					return item;
 				}
 				return null;
+			});
+			dispatch(setPhoto(newState));
+		} catch (e) {
+			getNotification('Something went wrong!', 'error');
+		}
+	};
+}
+
+export function postUserComment(axiosPrivate, data, id, photos) {
+	return async (dispatch) => {
+		try {
+			const response = await axiosPrivate.post(`/photo/comment/${data.photo_id}`, data);
+			const newState = photos.map((item) => {
+				if (item._id === id) {
+					return {
+						...response.data.value,
+					};
+				}
+				return item;
+			});
+			dispatch(setPhoto(newState));
+		} catch (e) {
+			getNotification('Something went wrong!', 'error');
+		}
+	};
+}
+
+export function deleteComment(axiosPrivate, id, photoId, photos) {
+	return async (dispatch) => {
+		try {
+			const response = await axiosPrivate.delete(`/photo/delete_comment/${photoId}/${id}`);
+			const newState = photos.map((item) => {
+				if (item._id === photoId) {
+					return {
+						...response.data.value,
+					};
+				}
+				return item;
 			});
 			dispatch(setPhoto(newState));
 		} catch (e) {
