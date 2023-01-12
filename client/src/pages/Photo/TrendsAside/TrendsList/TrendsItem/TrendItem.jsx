@@ -5,16 +5,16 @@ import { TrendCounter, TrendItemWrapper, TrendTitle } from '@src/pages/Photo/Tre
 export const TrendItem = ({ trend, set, isActive }) => {
 	return (
 		<TrendItemWrapper>
-			<TrendTitle isActive={isActive} data-value={trend.value} onClick={() => set(trend.value)}>{`#${trend.value}`}</TrendTitle>
-			<TrendCounter>{`${trend.counter} Photo(s)`}</TrendCounter>
+			<TrendTitle isActive={isActive} data-value={trend._id} onClick={() => set(trend._id)}>{`#${trend._id}`}</TrendTitle>
+			<TrendCounter>{`${trend.count} Photo(s)`}</TrendCounter>
 		</TrendItemWrapper>
 	);
 };
 
 TrendItem.propTypes = {
 	trend: PropTypes.shape({
-		value: PropTypes.string,
-		counter: PropTypes.number,
+		_id: PropTypes.string,
+		count: PropTypes.number,
 	}),
 	isActive: PropTypes.bool,
 	set: PropTypes.func,

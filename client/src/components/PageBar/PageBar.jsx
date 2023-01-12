@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MENU } from '@constants/menuItem';
-import { AuthButton, PageBarList, PageBarLogo, PageBarWrapper } from '@src/components/PageBar/style';
+import { AuthButton, PageBarButton, PageBarList, PageBarLogo, PageBarWrapper } from '@src/components/PageBar/style';
 import { MenuButton } from '@src/components/MenuButton/MenuButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from '@store/base/selectors';
 import { setModalState } from '@store/base/actions';
 
 export const PageBar = () => {
+	const [open, setOpen] = useState(false);
 	const user = useSelector(getUser);
 	const dispatch = useDispatch();
 	
@@ -19,7 +20,8 @@ export const PageBar = () => {
 	};
 	
 	return (
-		<PageBarWrapper>
+		<PageBarWrapper open={open}>
+			<PageBarButton className={open ? 'icon-close' : 'icon-more'} onClick={() => setOpen(!open)} open={open}/>
 			<PageBarLogo to='/'>bDa</PageBarLogo>
 			<PageBarList>
 				{MENU.map((item) => {
@@ -35,5 +37,3 @@ export const PageBar = () => {
 		</PageBarWrapper>
 	);
 };
-
-PageBar.propTypes = {};

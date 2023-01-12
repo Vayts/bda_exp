@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {
 	CardAuthorName,
 	CardAuthorPhoto, CardBottomContent, CardCategories, CardCategoryItem, CardControls, CardDescription, CardFavoriteButton,
-	CardImage, CardImageWrapper, CardLikeButton, CardLikeCounter, CardLikeWrapper, CardTime, CardTitle,
+	CardImage, CardImageWrapper, CardLikeButton, CardLikeCounter, CardLikeWrapper, CardSubContent, CardTime, CardTitle,
 	CardTitleWrapper,
 	CardWrapper, ContextMenuWrapper,
 } from '@src/pages/Photo/Сard/style';
@@ -18,6 +18,8 @@ import { Loader } from '@src/components/Loader/Loader';
 import moment from 'moment';
 import { v4 as uuid } from 'uuid';
 import { ContextMenu } from '@src/components/ContextMenu/ContextMenu';
+import { CommentForm } from '@src/pages/Photo/CommentForm/CommentForm';
+import { CommentsList } from '@src/pages/Photo/CommentsList/CommentsList';
 
 export const Card = ({ item }) => {
 	const dispatch = useDispatch();
@@ -101,8 +103,12 @@ export const Card = ({ item }) => {
 					})}
 				</CardCategories>
 				{item.description ? <CardDescription>{`${item.author}: ${item.description}`}</CardDescription> : null}
-				<CardTime>{moment(item.time).format('DD/MM/YYYY HH:mm')}</CardTime>
 			</CardBottomContent>
+			<CardSubContent>
+				<CommentsList photo={item} counter={item.comments}/>
+				<CardTime>{moment(item.time).format('DD/MM/YYYY HH:mm')}</CardTime>
+			</CardSubContent>
+			{user ? <CommentForm photo={item}/> : null}
 		</CardWrapper>
 	);
 };
@@ -120,5 +126,6 @@ Card.propTypes = {
 		byUser: PropTypes.array,
 		favorite: PropTypes.array,
 		time: PropTypes.string,
+		comments: PropTypes.number,
 	}),
 };

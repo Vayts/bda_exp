@@ -5,3 +5,5 @@ export const getTrends = (state) => state.photo.trends;
 export const getPage = (state) => state.photo.page;
 export const getCurrentPage = (state) => state.photo.currentPage;
 export const getUserLikes = (state) => state.photo.userLikes;
+
+export const getTrendsList = (state) => state.photo.trendsList;

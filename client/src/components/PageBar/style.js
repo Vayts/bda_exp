@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { COLORS } from '@constants/colors';
 
 export const PageBarLogo = styled(NavLink)`
 	display: block;
@@ -20,9 +21,11 @@ export const PageBarWrapper = styled.div`
   top: 0;
   bottom: 0;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s;
 	
 	@media (max-width: 768px) {
-		display: none;
+		z-index: 100;
+		left: ${({ open }) => (open ? '0' : '-90px')};
 	}
 `;
 
@@ -53,5 +56,31 @@ export const AuthButton = styled.div`
 
   &:before {
     font-size: 30px;
+  }
+`;
+
+export const PageBarButton = styled.div`
+	display: none;
+  justify-content: center;
+	align-items: center;
+  position: fixed;
+	top: 50%;
+	left: ${({ open }) => (open ? '90px' : '0')};
+	transition: all 0.2s;
+	transform: translateY(-50%);
+	width: 30px;
+	height: 50px;
+	background-color: ${COLORS.light.primary};
+	border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+	z-index: 100;
+	
+	&:before {
+		color: #fff;
+	}
+	
+
+  @media (max-width: 768px) {
+    display: flex;
   }
 `;

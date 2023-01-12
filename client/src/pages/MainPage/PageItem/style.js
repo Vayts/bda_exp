@@ -7,6 +7,15 @@ export const PageItemWrapper = styled.li`
 	border-radius: 5px;
 	overflow: hidden;
 	flex-basis: 30%;
+	
+	@media (max-width: 768px) {
+		flex-basis: 45%;
+		margin-bottom: 20px;
+	}
+
+  @media (max-width: 500px) {
+    flex-basis: 90%;
+  }
 `;
 
 export const PageButtonTitle = styled.h3`

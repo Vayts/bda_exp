@@ -12,7 +12,7 @@ export const useAxiosPrivate = () => {
 		const requestIntercept = axiosPrivate.interceptors.request.use(
 			(config) => {
 				if (!config.headers.Authorization) {
-					config.headers.Authorization = `Bearer ${user.token}`;
+					config.headers.Authorization = `Bearer ${user?.token}`;
 				}
 				return config;
 			}, (error) => Promise.reject(error),
@@ -26,7 +26,7 @@ export const useAxiosPrivate = () => {
 					prevRequest.sent = true;
 					const responseToken = await dispatch(refreshUser);
 					if (responseToken) {
-						prevRequest.headers.Authorization = `Bearer ${user.token}`;
+						prevRequest.headers.Authorization = `Bearer ${user?.token}`;
 					}
 					return axiosPrivate(prevRequest);
 				}

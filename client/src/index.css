@@ -25,6 +25,10 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-comment:before {
+  content: "\e913";
+}
+
 .icon-more:before {
   content: "\e912";
 }

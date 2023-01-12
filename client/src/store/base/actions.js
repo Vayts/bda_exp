@@ -74,7 +74,10 @@ export const refreshUser = (setLoading) => {
 				withCredentials: true,
 			});
 			
-			if (response.data.user) dispatch(setAuth(response.data.user));
+			if (response.data.user) {
+				dispatch(setAuth(response.data.user));
+				return response.data.user.token;
+			}
 		} catch (err) {
 			return err;
 		} finally {

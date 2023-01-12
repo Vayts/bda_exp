@@ -71,12 +71,10 @@ export const AddPhotoModal = () => {
 					values,
 					handleSubmit,
 					handleBlur,
-					errors,
 					handleChange,
 					dirty,
 					isValid,
 					setFieldValue,
-					touched,
 					setFieldTouched,
 				}) => {
 					return (
@@ -95,7 +93,6 @@ export const AddPhotoModal = () => {
 								height="40px"
 								name="title"
 								margin='10px 0 10px 0'
-								validation={touched.title ? touched.title && errors.title ? 'error' : 'valid' : 'unTouched'}
 							/>
 							<ErrorMessage name="title"/>
 							<TextArea
@@ -106,7 +103,6 @@ export const AddPhotoModal = () => {
 								id='description'
 								width='100%'
 								height='100px'
-								validation={touched.description ? touched.description && errors.description ? 'error' : 'valid' : 'unTouched'}
 								placeholder='Description'
 							/>
 							<ErrorMessage name="description"/>
@@ -119,7 +115,6 @@ export const AddPhotoModal = () => {
 								height="40px"
 								name="categories"
 								margin='10px 0 10px 0'
-								validation={touched.categories ? touched.categories && errors.categories ? 'error' : 'valid' : 'unTouched'}
 							/>
 							<ErrorMessage name="categories"/>
 							<Button isLoading={isLoading} primary clickHandler={handleSubmit} disabled={!(isValid && dirty) || !values.file.length || isLoading} width="100%" type="submit" height='45px' text="Send" padding='5px 0' fz='16px'/>

@@ -30,4 +30,9 @@ export const MainList = styled.ul`
 	justify-content: space-between;
 	width: 100%;
 	max-width: 1000px;
+	flex-wrap: wrap;
+	
+	@media(max-width: 768px) {
+    justify-content: space-around;
+	}
 `;
