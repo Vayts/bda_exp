@@ -22,10 +22,6 @@ export const Converter = () => {
 	const [isLoading, setLoading] = useState(false);
 	const [selectedTo, setSelectedTo] = useState(CURRENCY[2]);
 	
-	useEffect(() => {
-		document.title = 'bDa - Converter';
-	}, []);
-	
 	const validationSchema = yup.object().shape({
 		amount: yup.number().min(0.01).max(9999999999999999).required(),
 		from: yup.object().required(),
@@ -61,6 +57,7 @@ export const Converter = () => {
 	
 	useEffect(() => {
 		const controller = new AbortController();
+		document.title = 'bDa - Converter';
 		dispatch(getExchangeRateFetch(setLoading, controller, {
 			amount: 1,
 			from: CURRENCY[1],

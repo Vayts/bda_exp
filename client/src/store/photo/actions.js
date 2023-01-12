@@ -68,9 +68,9 @@ export function sendPhotoAction(values, categories, search, axiosPrivate, setLoa
 			);
 			dispatch(setModalState(null));
 			dispatch(setPage('home'));
-			getNotification('Photo has been uploaded', 'success');
 			dispatch(setPhoto(response.data.value));
 			dispatch(getTrendsListAction());
+			getNotification('Photo has been uploaded', 'success');
 		} catch (e) {
 			getNotification('Something went wrong!', 'error');
 		} finally {
