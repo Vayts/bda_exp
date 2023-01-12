@@ -9,8 +9,6 @@ export const useAxiosPrivate = () => {
 	const user = useSelector(getUser);
 	
 	useEffect(() => {
-		// eslint-disable-next-line no-console
-		console.log(user?.token);
 		const requestIntercept = axiosPrivate.interceptors.request.use(
 			(config) => {
 				if (!config.headers.Authorization) {
@@ -27,12 +25,8 @@ export const useAxiosPrivate = () => {
 				if (error?.response?.status === 403 && !prevRequest?.sent) {
 					prevRequest.sent = true;
 					const responseToken = await dispatch(refreshUser);
-					// eslint-disable-next-line no-console
-					console.log(responseToken);
 					if (responseToken) {
 						prevRequest.headers.Authorization = `Bearer ${user?.token}`;
-						// eslint-disable-next-line no-console
-						console.log(user?.token);
 					}
 					return axiosPrivate(prevRequest);
 				}
