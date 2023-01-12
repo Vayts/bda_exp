@@ -42,7 +42,7 @@ export const CommentForm = ({ photo }) => {
 		<CommentFormWrapper>
 			<CommentFormIcon className='icon-comment'/>
 			<CommentFormInput placeholder='Send your comment...' value={comment} onChange={(e) => setComment(e.target.value)}/>
-			<CommentFormButton type='button' disabled={!validate()} onClick={() => submit()}>Post</CommentFormButton>
+			<CommentFormButton type='submit' disabled={!validate()} onClick={() => submit()}>Post</CommentFormButton>
 		</CommentFormWrapper>
 	);
 };

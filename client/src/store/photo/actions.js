@@ -70,6 +70,7 @@ export function sendPhotoAction(values, categories, search, axiosPrivate, setLoa
 			dispatch(setPage('home'));
 			getNotification('Photo has been uploaded', 'success');
 			dispatch(setPhoto(response.data.value));
+			dispatch(getTrendsListAction());
 		} catch (e) {
 			getNotification('Something went wrong!', 'error');
 		} finally {
@@ -273,6 +274,17 @@ export function deleteComment(axiosPrivate, id, photoId, photos) {
 				return item;
 			});
 			dispatch(setPhoto(newState));
+		} catch (e) {
+			getNotification('Something went wrong!', 'error');
+		}
+	};
+}
+
+export function getTrendsListAction() {
+	return async (dispatch) => {
+		try {
+			const response = await axios.get('/photo/trends');
+			dispatch(setTrends(response.data.value));
 		} catch (e) {
 			getNotification('Something went wrong!', 'error');
 		}

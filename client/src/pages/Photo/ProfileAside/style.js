@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { COLORS } from '@constants/colors';
 
-export const ProfileAsideWrapper = styled.div`
+export const ProfileAsideWrapper = styled.aside`
 	position: sticky;
 	top: 40px;
 `;
