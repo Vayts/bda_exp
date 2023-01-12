@@ -255,8 +255,6 @@ export const createQuizFetch = (values, questions, navigate, axiosPrivate, setLo
 				formData.append('file', values.photo);
 			}
 			if (el === 'questionsPictures') {
-				// eslint-disable-next-line no-console
-				console.log(values[el]);
 				values[el].forEach((item) => {
 					formData.append('pictures', item);
 				});
