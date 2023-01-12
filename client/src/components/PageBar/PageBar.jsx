@@ -21,7 +21,7 @@ export const PageBar = () => {
 	
 	return (
 		<PageBarWrapper open={open}>
-			<PageBarButton className='icon-more' onClick={() => setOpen(!open)} open={open}/>
+			<PageBarButton className={open ? 'icon-close' : 'icon-more'} onClick={() => setOpen(!open)} open={open}/>
 			<PageBarLogo to='/'>bDa</PageBarLogo>
 			<PageBarList>
 				{MENU.map((item) => {
