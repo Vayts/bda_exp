@@ -24,7 +24,7 @@ export const useAxiosPrivate = () => {
 				const prevRequest = error?.config;
 				if (error?.response?.status === 403 && !prevRequest?.sent) {
 					prevRequest.sent = true;
-					const responseToken = await dispatch(refreshUser);
+					const responseToken = await dispatch(refreshUser());
 					if (responseToken) {
 						prevRequest.headers.Authorization = `Bearer ${user?.token}`;
 					}
